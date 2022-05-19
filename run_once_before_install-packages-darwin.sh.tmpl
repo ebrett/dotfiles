@@ -1,0 +1,23 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+brew "git"
+brew "gh"
+brew "direnv"
+brew "zsh"
+brew "zsh-syntax-highlighting"
+brew "tmux"
+
+cask "chromedriver", args: { appdir: "/Applications" }
+cask "dropbox", args: { appdir: "/Applications" }
+cask "firefox", args: { appdir: "/Applications" }
+cask "handbrake", args: { appdir: "/Applications" }
+cask "licecap", args: { appdir: "/Applications" }
+cask "sequel-ace", args: { appdir: "/Applications" }
+cask "sublime-text", args: { appdir: "/Applications" }
+cask "transmit", args: { appdir: "/Applications" }
+cask "vagrant", args: { appdir: "/Applications" }
+cask "obsidian", args: { appdir: "/Applications" }
+EOF
+{{ end -}}
