@@ -77,7 +77,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(asdf docker git colored-man-pages colorize pip python brew bundler dotenv macos zsh-autosuggestions rake ruby rails vscode tmux heroku gulp grunt)
+plugins=(asdf docker git colored-man-pages colorize pip python brew bundler dotenv macos rake ruby rails vscode tmux heroku gulp grunt)
 
 source $ZSH/oh-my-zsh.sh
 
