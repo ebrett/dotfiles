@@ -114,6 +114,9 @@ cdpath=($HOME/src $HOME/src/dfe $HOME/src/demsabroad)
 # for intel x86_64 brew
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
+# release commands
+alias release='git log $(git describe --tags --abbrev=0)..HEAD --no-merges --oneline'
+
 export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
