@@ -1,17 +1,15 @@
 [user]
 	name = Brett McHargue
-	email = brett@therubytroubadour.com
+	email = {{ .email }}
 [credential "https://github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = {{ .helper }}/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = {{ .helper }}/bin/gh auth git-credential
 [core]
-	excludesfile = /Users/brett/.gitignore
+	excludesfile = {{ .chezmoi.homeDir }}/.gitignore
 [init]
 	defaultBranch = main
-	templateDir = /Users/brett/.git-templates/git-secrets
+	templateDir = {{ .chezmoi.homeDir }}/.git-templates/git-secrets
 [secrets]
 	providers = git secrets --aws-provider
 	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
