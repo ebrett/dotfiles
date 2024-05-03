@@ -1,4 +1,5 @@
-# ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+ssh-add --apple-use-keychain ~/.ssh/bitbucket_researchbods
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -121,7 +122,8 @@ alias release='git log $(git describe --tags --abbrev=0)..HEAD --no-merges --one
 
 # docker aliases
 alias dc='docker-compose'
-alias dbe='docker-compose exec explor bundle exec'
+alias dbe='docker-compose exec -w /src/applications/explor explor bundle exec'
+alias docked='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli'
 
 export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
