@@ -119,11 +119,14 @@ alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 # release commands
 alias release='git log $(git describe --tags --abbrev=0)..HEAD --no-merges --oneline'
 
+alias gam="/Users/bmc/bin/gam/gam"
+
 export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="$PATH:/Users/bmc/.local/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -138,3 +141,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fpath+=~/.zfunc
+
