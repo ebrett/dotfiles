@@ -111,7 +111,7 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/usr/local/sbin:$PATH"
 setopt auto_cd
-cdpath=($HOME/src $HOME/src/dfe $HOME/src/demsabroad $HOME/Documents/DemsAbroad $Home/Document/Personal)
+cdpath=($HOME/Projects $HOME/Projects/demsabroad $HOME/Projects/bookaddiction $HOME/Projects/wordpress $HOME/Documents $HOME/Documents/DemsAbroad $Home/Document/Personal)
 
 # for intel x86_64 brew
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
@@ -129,8 +129,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export LEDGER_FILE=dpca-ledger.journal
+
 eval "$(direnv hook zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+fpath+=~/.zfunc
