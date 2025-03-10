@@ -1,5 +1,4 @@
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-ssh-add --apple-use-keychain ~/.ssh/bitbucket_researchbods
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -146,5 +145,15 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[ -f ~/scripts/api_keys.sh ] && source ~/scripts/api_keys.sh
+
 fpath+=~/.zfunc
 
+source "/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc"
+source "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"
+
+alias gam="$HOME/bin/gamadv-xtd3/gam"
+export PATH="$HOME/bin/gamadv-xtd3:$PATH"
+export VISUAL="nvim"
+
+export OBSIDIAN_VAULT_HOME="$HOME/Documents/Personal"
