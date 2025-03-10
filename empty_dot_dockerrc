@@ -1,6 +1,5 @@
 # docker aliases
 alias dc='docker compose'
-alias dbe='docker compose exec -w /src/application/explor explor bundle exec'
 alias docked='docker run --rm -it -v $(PWD)/.railsrc:/.railsrc  -v $(PWD):/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli'
 alias rails='docked rails'
 alias rails-dev='docked bin/dev'
