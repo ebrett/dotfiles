@@ -4,7 +4,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
@@ -51,3 +51,47 @@ node_modules/
 # Task files
 tasks.json
 tasks/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.coverage
+*.cover
+.hypothesis/
+*.egg-info/
+dist/
+build/
+
+# Rust
+target/
+Cargo.lock
+
+# Go
+*.test
+*.out
+go.work
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+.tmp/
+temp/
+*.tmp
+*.temp
+
+# IDE specific
+.fleet/
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*.backup
+*~
