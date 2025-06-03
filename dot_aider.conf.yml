@@ -124,7 +124,7 @@ sonnet: true
 # Cache Settings:
 
 ## Enable caching of prompts (default: False)
-#cache-prompts: false
+cache-prompts: true
 
 ## Number of times to ping at 5min intervals to keep prompt cache warm (default: 0)
 #cache-keepalive-pings: false
@@ -133,7 +133,7 @@ sonnet: true
 # Repomap Settings:
 
 ## Suggested number of tokens to use for repo map, use 0 to disable (default: 1024)
-#map-tokens: xxx
+map-tokens: 2048
 
 ## Control how often the repo map is refreshed. Options: auto, always, files, manual (default: auto)
 #map-refresh: auto
@@ -202,7 +202,7 @@ sonnet: true
 #code-theme: default
 
 ## Show diffs when committing changes (default: False)
-#show-diffs: false
+show-diffs: true
 
 ###############
 # Git Settings:
