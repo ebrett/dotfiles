@@ -29,6 +29,9 @@ Temporary Items
 .idea
 .vscode
 
+# Ignore personal configuration settings
+.claude
+
 # Added by Claude Task Master
 # Logs
 logs
