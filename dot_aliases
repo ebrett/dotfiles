@@ -81,3 +81,24 @@ alias cma='chezmoi apply'
 alias cmd='chezmoi diff'
 alias cme='chezmoi edit'
 alias cmra='chezmoi re-add'
+
+# for intel x86_64 brew
+alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
+
+# release commands
+alias release='git log $(git describe --tags --abbrev=0)..HEAD --no-merges --oneline'
+
+alias gam="/Users/bmc/bin/gam/gam"
+alias gam="$HOME/bin/gamadv-xtd3/gam"
+alias fabric='fabric-ai'
+
+
+# for intel x86_64 brew
+alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
+
+# release commands
+alias release='git log $(git describe --tags --abbrev=0)..HEAD --no-merges --oneline'
+
+alias gam="/Users/bmc/bin/gam/gam"
+alias gam="$HOME/bin/gamadv-xtd3/gam"
+alias fabric='fabric-ai'

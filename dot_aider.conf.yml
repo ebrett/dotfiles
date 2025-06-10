@@ -29,7 +29,7 @@
 #opus: false
 
 ## Use claude-3-5-sonnet-20241022 model for the main chat
-sonnet: true
+# sonnet: true
 
 ## Use claude-3-5-haiku-20241022 model for the main chat
 #haiku: false
