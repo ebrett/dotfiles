@@ -78,7 +78,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mise docker git colored-man-pages colorize pip python brew bundler dotenv macos rake ruby rails vscode tmux heroku gulp grunt zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(mise docker git colored-man-pages colorize pip python brew bundler macos rake ruby rails vscode tmux heroku gulp grunt zsh-autosuggestions zsh-syntax-highlighting)
+
+export MISE_SHELL_OPTIONS="--no-prompt"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,9 +105,9 @@ fi
 setopt auto_cd
 
 # Use variables for common paths
-export CODE_DIR="$HOME/Code"
+export CODE_DIR="$HOME/Code/Active"
 export RESOURCES_DIR="$HOME/Resources"
-cdpath=($RESOURCES_DIR $CODE_DIR $CODE_DIR/active)
+cdpath=($RESOURCES_DIR $CODE_DIR $CODE_DIR/Ruby $CODE_DIR/JavaScript $CODE_DIR/Learning $CODE_DIR/Python)
 
 export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
@@ -144,3 +146,5 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 # Load aliases
 [ -f ~/.aliases ] && source ~/.aliases
+export GPG_TTY=$(tty)
+alias claude="/Users/bmc/.claude/local/claude"
