@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Add profile update methods for tags and metadata",
+    "status": "completed",
+    "priority": "medium",
+    "id": "9b"
+  },
+  {
+    "content": "Update login flow to sync NationBuilder data",
+    "status": "completed",
+    "priority": "medium",
+    "id": "9b-1"
+  },
+  {
+    "content": "Test profile sync functionality",
+    "status": "completed",
+    "priority": "medium",
+    "id": "9b-2"
+  }
+]

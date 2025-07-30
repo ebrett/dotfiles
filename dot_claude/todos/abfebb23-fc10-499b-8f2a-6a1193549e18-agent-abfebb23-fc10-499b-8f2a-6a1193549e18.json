@@ -1,0 +1,14 @@
+[
+  {
+    "content": "Update components navigation to require system_administrator role only",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Update navigation test to check for system_administrator role",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  }
+]

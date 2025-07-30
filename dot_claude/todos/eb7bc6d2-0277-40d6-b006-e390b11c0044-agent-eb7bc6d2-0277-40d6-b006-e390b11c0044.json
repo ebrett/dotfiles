@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Create TailwindFormBuilder class with existing DAFA styling",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Configure Rails to use custom FormBuilder",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Migrate authentication forms (signin/signup)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Update InkindDonationFormComponent to use FormBuilder",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Add comprehensive tests for FormBuilder",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Run full test suite to ensure no regressions",
+    "status": "completed",
+    "priority": "low",
+    "id": "6"
+  }
+]

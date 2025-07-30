@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Analyze current git status and changes",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Group changes into logical commit sets",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Create commits for each logical group",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  }
+]

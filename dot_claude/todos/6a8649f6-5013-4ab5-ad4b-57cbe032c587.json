@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Create spec to reproduce Ransack error in User model",
+    "status": "completed",
+    "priority": "high",
+    "id": "error_debug_1"
+  },
+  {
+    "content": "Fix Ransack error by adding ransackable_attributes method",
+    "status": "completed",
+    "priority": "high",
+    "id": "error_debug_2"
+  },
+  {
+    "content": "Create spec to reproduce TypeError in system_health view",
+    "status": "completed",
+    "priority": "high",
+    "id": "error_debug_3"
+  },
+  {
+    "content": "Fix TypeError in AdminController system_health method",
+    "status": "completed",
+    "priority": "high",
+    "id": "error_debug_4"
+  },
+  {
+    "content": "Verify all specs pass after fixes",
+    "status": "completed",
+    "priority": "medium",
+    "id": "error_debug_5"
+  }
+]

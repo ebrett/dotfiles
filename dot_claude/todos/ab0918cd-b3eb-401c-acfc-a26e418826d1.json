@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Check if VCR gem is already installed and configured",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Examine existing NationBuilder test structure",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Install and configure VCR gem",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Create VCR test for NationBuilder OAuth flow",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Update existing test scope to use 'default'",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Run tests to verify everything works",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  }
+]

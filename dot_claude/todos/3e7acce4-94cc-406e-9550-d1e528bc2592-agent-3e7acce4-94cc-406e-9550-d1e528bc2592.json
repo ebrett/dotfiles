@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Add user name detection methods to CLI class",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Update development journal ERB template to be framework-agnostic",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Add conditional content based on project type and framework",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Test the updated template with different project types",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Update CLI to pass user name to template rendering",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  }
+]

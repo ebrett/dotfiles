@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Fix ActiveRecord::SessionStore::Session model conflict",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Update test environment configuration",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Re-run tests to verify fixes",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  }
+]

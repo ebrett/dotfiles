@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Update existing CLAUDE.md template for clarity and best practices",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Add extended thinking triggers to workflow templates",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Create new Explore-Plan-Code-Commit workflow template",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Add visual iteration workflow for UI development",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Enhance test-driven development templates with failure verification",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Add permission guidance and tool customization to templates",
+    "status": "completed",
+    "priority": "low",
+    "id": "6"
+  }
+]

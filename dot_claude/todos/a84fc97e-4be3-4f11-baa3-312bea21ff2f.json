@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "content": "Create HomeController with index action",
+    "status": "completed",
+    "priority": "high"
+  },
+  {
+    "id": "2",
+    "content": "Create view template for home page",
+    "status": "completed",
+    "priority": "high"
+  },
+  {
+    "id": "3",
+    "content": "Update routes to set root path",
+    "status": "completed",
+    "priority": "high"
+  }
+]

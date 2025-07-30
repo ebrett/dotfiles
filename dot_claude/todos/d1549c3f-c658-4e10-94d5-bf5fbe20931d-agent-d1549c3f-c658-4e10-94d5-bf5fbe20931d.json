@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Fix RSpec warnings in oauth_status_controller_nil_handling_spec.rb",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Fix RSpec warnings in users_controller_spec.rb",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Address RSpec warnings about expect not_to raise_error with specific errors",
+    "status": "completed",
+    "priority": "low",
+    "id": "3"
+  }
+]

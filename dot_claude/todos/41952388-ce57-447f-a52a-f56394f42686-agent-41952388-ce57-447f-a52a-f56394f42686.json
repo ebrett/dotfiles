@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Identify the Active Record encryption keys needed from credentials",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Configure Rails to read encryption keys from environment variables",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Update Kamal secrets file with encryption environment variables",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Test deployment with environment variables",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  }
+]

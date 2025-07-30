@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Review and enhance current seeding mechanism with additional test scenarios",
+    "status": "completed",
+    "priority": "high",
+    "id": "enhance_seeding"
+  },
+  {
+    "content": "Add edge case test users (disabled, invalid email, etc.)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "edge_case_users"
+  },
+  {
+    "content": "Create custom rake task for easier seeding workflow",
+    "status": "completed",
+    "priority": "medium",
+    "id": "custom_rake_task"
+  },
+  {
+    "content": "Add environment-based configuration for different seed sets",
+    "status": "completed",
+    "priority": "low",
+    "id": "env_config"
+  },
+  {
+    "content": "Document seeding usage and customization options",
+    "status": "completed",
+    "priority": "medium",
+    "id": "document_seeding"
+  },
+  {
+    "content": "Test seeding with clean vs pre-populated database scenarios",
+    "status": "completed",
+    "priority": "high",
+    "id": "test_scenarios"
+  }
+]

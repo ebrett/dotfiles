@@ -1,0 +1,8 @@
+[
+  {
+    "content": "Fix CI workflow to properly detect changed files for OAuth job",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Add GET /accounts/{slug}/settings endpoint for retrieving account settings",
+    "status": "completed",
+    "priority": "high",
+    "id": "settings-api-1"
+  },
+  {
+    "content": "Add PUT /accounts/{slug}/settings endpoint for updating account settings",
+    "status": "completed",
+    "priority": "high",
+    "id": "settings-api-2"
+  },
+  {
+    "content": "Add settings validation and audit logging for changes",
+    "status": "completed",
+    "priority": "medium",
+    "id": "settings-validation"
+  },
+  {
+    "content": "Write tests for new settings management endpoints",
+    "status": "completed",
+    "priority": "medium",
+    "id": "settings-tests"
+  }
+]

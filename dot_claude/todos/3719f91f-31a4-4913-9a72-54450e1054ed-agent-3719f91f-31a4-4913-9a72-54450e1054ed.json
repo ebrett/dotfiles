@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Create Python script to parse mbox files and extract emails by date",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Add command-line interface for date range specification",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "Support multiple output formats (JSON, CSV, original mbox)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  }
+]

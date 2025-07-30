@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Fix SSH authentication for Kamal deployment",
+    "status": "completed",
+    "priority": "high",
+    "id": "25"
+  },
+  {
+    "content": "Deploy application to DigitalOcean",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "26"
+  },
+  {
+    "content": "Test Cloudflare behavior on DigitalOcean",
+    "status": "pending",
+    "priority": "medium",
+    "id": "27"
+  },
+  {
+    "content": "Compare results with Fly.io deployment",
+    "status": "pending",
+    "priority": "medium",
+    "id": "28"
+  },
+  {
+    "content": "Add SSH key to agent and complete setup",
+    "status": "pending",
+    "priority": "high",
+    "id": "29"
+  }
+]

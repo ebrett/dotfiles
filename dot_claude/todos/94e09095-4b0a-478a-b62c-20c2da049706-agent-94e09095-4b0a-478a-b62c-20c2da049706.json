@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Add missing Python workflow templates",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Create Python testing patterns template",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Add Flask-specific workflow template",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Update README with Python examples",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Add more Python-specific tests",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Fix RuboCop offenses",
+    "status": "completed",
+    "priority": "low",
+    "id": "6"
+  },
+  {
+    "content": "Update CHANGELOG.md",
+    "status": "completed",
+    "priority": "high",
+    "id": "7"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Investigate button text capitalization issue in authentication forms",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Fix failing authentication forms test (modal visibility)",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Update test expectations to match actual button text",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Debug why modal is not opening in test environment",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Fix ambiguous button selector in authentication forms tests",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Fix ambiguous button selector in authentication modal tests",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "Run code quality checks (rubocop and brakeman)",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "7"
+  }
+]

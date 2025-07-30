@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Fix missing gems issue in DigitalOcean deployment",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Update Kamal deployment to ensure proper bundle installation",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "Test deployment after bundle fix",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  }
+]

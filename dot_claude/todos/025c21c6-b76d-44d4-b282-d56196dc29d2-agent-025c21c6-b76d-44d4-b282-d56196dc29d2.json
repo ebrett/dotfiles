@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Examine GitHub Actions workflow configuration",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Fix database migration issue in CI workflow",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Verify the fix resolves all CI test failures",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  }
+]

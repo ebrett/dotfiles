@@ -1,0 +1,62 @@
+[
+  {
+    "content": "Fix missing gems issue in DigitalOcean deployment",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Update Kamal deployment to ensure proper bundle installation",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "Test deployment after bundle fix",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "Fix Active Record encryption configuration to avoid credentials file during Docker build",
+    "status": "completed",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "Update Docker entrypoint to create credentials at runtime from environment variables",
+    "status": "completed",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "Test deployment with runtime credentials configuration",
+    "status": "completed",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "Restore website functionality by restarting working container",
+    "status": "completed",
+    "priority": "high",
+    "id": "11"
+  },
+  {
+    "content": "Clean up old containers and attempt fresh deployment",
+    "status": "completed",
+    "priority": "high",
+    "id": "12"
+  },
+  {
+    "content": "Write comprehensive wrap-up for development journal documenting DigitalOcean deployment challenges",
+    "status": "completed",
+    "priority": "high",
+    "id": "13"
+  },
+  {
+    "content": "Destroy DigitalOcean instance to stop incurring costs",
+    "status": "completed",
+    "priority": "high",
+    "id": "14"
+  }
+]

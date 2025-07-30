@@ -1,0 +1,8 @@
+[
+  {
+    "content": "Update README with git hooks setup instructions and development workflow",
+    "status": "pending",
+    "priority": "medium",
+    "id": "readme-update"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Set up PostgreSQL database and user for development",
+    "status": "completed",
+    "priority": "high",
+    "id": "setup-database"
+  },
+  {
+    "content": "Format all Python files with black",
+    "status": "completed",
+    "priority": "high",
+    "id": "format-code"
+  },
+  {
+    "content": "Run Alembic migrations to set up database schema",
+    "status": "completed",
+    "priority": "high",
+    "id": "run-migrations"
+  },
+  {
+    "content": "Fix test database connection issues",
+    "status": "completed",
+    "priority": "high",
+    "id": "fix-tests"
+  },
+  {
+    "content": "Fix remaining issue with current account endpoint",
+    "status": "pending",
+    "priority": "medium",
+    "id": "fix-current-account"
+  },
+  {
+    "content": "Create detailed task list for account management implementation",
+    "status": "completed",
+    "priority": "medium",
+    "id": "account-management-tasks"
+  },
+  {
+    "content": "Create detailed task list for invitation system implementation",
+    "status": "completed",
+    "priority": "medium",
+    "id": "invitation-system-tasks"
+  }
+]

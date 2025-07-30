@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Investigate Tailwind v4 configuration requirements",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Start development server with bin/dev",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Verify CSS is being generated correctly",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  }
+]

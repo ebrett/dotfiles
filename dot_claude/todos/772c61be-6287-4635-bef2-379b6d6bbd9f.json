@@ -1,0 +1,14 @@
+[
+  {
+    "content": "Update Task 3 to remove Treasury IT role and design role system for multi-role users",
+    "status": "completed",
+    "priority": "high",
+    "id": "task_3_update"
+  },
+  {
+    "content": "Implement Role model, User-Role associations, and basic authorization foundation",
+    "status": "completed",
+    "priority": "high",
+    "id": "task_3_1_implementation"
+  }
+]

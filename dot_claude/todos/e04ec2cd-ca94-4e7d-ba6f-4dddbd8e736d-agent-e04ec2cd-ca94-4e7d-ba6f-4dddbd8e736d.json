@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Create claude-rails-setup Ruby gem structure",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Migrate workflow commands from .cursor/rules to gem templates",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Test gem locally with Jupiter project",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Publish gem to RubyGems (optional)",
+    "status": "pending",
+    "priority": "low",
+    "id": "4"
+  },
+  {
+    "content": "Update tmux-dev script to include Claude integration",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  }
+]

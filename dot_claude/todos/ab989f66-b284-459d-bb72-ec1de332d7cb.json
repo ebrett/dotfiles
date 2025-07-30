@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Update zsh configuration with performance optimizations and better plugins",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Enhance git configuration with workflow improvements",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Add missing development tools to package installation script",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Optimize aider configuration settings",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Expand gitignore with language-specific patterns",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Create separate aliases file",
+    "status": "completed",
+    "priority": "low",
+    "id": "6"
+  },
+  {
+    "content": "Create tmux configuration file",
+    "status": "completed",
+    "priority": "low",
+    "id": "7"
+  }
+]

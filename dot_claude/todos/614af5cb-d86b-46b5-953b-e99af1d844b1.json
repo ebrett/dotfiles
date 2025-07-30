@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Run RSpec test suite to check for failures",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Run RuboCop to check for linting issues",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Fix test failures found",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Fix RuboCop violations found",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  }
+]
