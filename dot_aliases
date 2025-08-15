@@ -81,6 +81,9 @@ alias cma='chezmoi apply'
 alias cmd='chezmoi diff'
 alias cme='chezmoi edit'
 alias cmra='chezmoi re-add'
+alias cms='chezmoi status'
+alias cmcd='cd ~/.local/share/chezmoi'
+alias cmup='chezmoi update'
 
 # for intel x86_64 brew
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
@@ -102,3 +105,31 @@ alias release='git log $(git describe --tags --abbrev=0)..HEAD --no-merges --one
 alias gam="/Users/bmc/bin/gam/gam"
 alias gam="$HOME/bin/gamadv-xtd3/gam"
 alias fabric='fabric-ai'
+
+# Dotfile management helpers
+dotfile_check() {
+    if [[ $(chezmoi status | wc -l) -gt 0 ]]; then
+        echo "⚠️  You have unsynced dotfile changes. Run 'cms' (chezmoi status) to review."
+        echo "   Use 'cmd' (chezmoi diff) to see details, 'cmra <file>' to sync changes."
+    else
+        echo "✅ All dotfiles are in sync with chezmoi."
+    fi
+}
+
+# Quick dotfile sync helper
+dotfile_sync() {
+    echo "📋 Checking dotfile status..."
+    chezmoi status
+    echo ""
+    read -q "REPLY?Sync all changes to chezmoi? (y/n): "
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        for file in $(chezmoi status | awk '{print $2}'); do
+            echo "🔄 Syncing $file..."
+            chezmoi re-add "$HOME/$file"
+        done
+        echo "✅ All changes synced to chezmoi."
+    else
+        echo "❌ Sync cancelled."
+    fi
+}
