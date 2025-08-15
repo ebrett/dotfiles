@@ -1,0 +1,50 @@
+[user]
+	name = Brett McHargue
+	email = ebrett@users.noreply.github.com
+	signingkey = E11967F8E2986E41F9F78D4A55425EA380C7B23D
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[core]
+	excludesFile = /Users/bmc/.gitignore_global
+[init]
+	defaultBranch = main
+	templateDir = /Users/bmc/.git-templates/git-secrets
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+	template = /Users/bmc/.gitmessage
+[push]
+	default = current
+	autoSetupRemote = true
+[pull]
+	rebase = false
+[branch]
+	autosetupmerge = always
+[merge]
+	tool = vscode
+	ff = false
+[diff]
+	tool = vscode
+	colorMoved = default
+[rerere]
+	enabled = true
+[color]
+	ui = auto
+[fetch]
+	prune = true

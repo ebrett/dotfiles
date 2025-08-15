@@ -1,0 +1,43 @@
+# Global Starship prompt config
+# Docs: https://starship.rs/config/
+
+add_newline = false
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold blue"
+
+[git_branch]
+symbol = " "
+truncation_length = 20
+
+[git_status]
+conflicted = "=!"
+modified = "*"
+untracked = "+"
+stashed = "\uF01C"
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = false
+pyenv_version_name = true
+
+[ruby]
+disabled = false
+
+[docker_context]
+disabled = false
+
+[golang]
+disabled = false
+
+[time]
+disabled = true
+

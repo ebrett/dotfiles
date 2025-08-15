@@ -1,0 +1,5 @@
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Created by `pipx` on 2024-09-13 02:24:13
+export PATH="$PATH:/Users/bmc/.local/bin"
