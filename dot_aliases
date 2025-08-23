@@ -96,6 +96,9 @@ alias gam="$HOME/bin/gamadv-xtd3/gam"
 alias fabric='fabric-ai'
 
 
+alias cld="claude --resume"
+alias yolo="claude --dangerously-skip-permissions"
+
 # for intel x86_64 brew
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
