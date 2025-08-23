@@ -1,0 +1,81 @@
+# Global Git Ignore
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Editor and IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.fleet/
+
+# Development Tools
+.tool-versions
+.envrc
+.direnv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.hypothesis/
+.venv/
+venv/
+.pyre/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+
+# Environment Files (local-only)
+.env
+.env.local
+.env.*.local
+
+# Temporary Files
+*.tmp
+*.temp
+.tmp/
+temp/
+tmp/
+
+# Backup Files
+*.bak
+*.orig
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# Windows System Files
+Thumbs.db
+Desktop.ini
+
