@@ -152,4 +152,3 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 # Load aliases
 [ -f ~/.aliases ] && source ~/.aliases
 export GPG_TTY=$(tty)
-alias claude="/Users/bmc/.claude/local/claude"
