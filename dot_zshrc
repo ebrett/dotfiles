@@ -142,7 +142,7 @@ source "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"
 export PATH="$HOME/bin/gamadv-xtd3:$PATH"
 export VISUAL="nvim"
 
-export OBSIDIAN_VAULT_HOME="$HOME/Documents/Personal"
+export OBSIDIAN_VAULT_HOME="$HOME/Personal"
 
 # Golang environment variables
 export GOROOT=$(brew --prefix go)/libexec
