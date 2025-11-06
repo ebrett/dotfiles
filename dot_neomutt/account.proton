@@ -1,0 +1,27 @@
+# Proton Mail Account Configuration
+# Account: brett@mchargue.net
+
+# Identity
+set realname = "Brett Shane McHargue"
+set from = "brett@mchargue.net"
+
+# IMAP Settings
+set imap_user = "brett@mchargue.net"
+source ~/.neomutt_passwords
+set folder = "imap://brett@mchargue.net@127.0.0.1:1143"
+set spoolfile = "=INBOX"
+set record = "=Sent"
+set postponed = "=Drafts"
+set trash = "=Trash"
+
+# SMTP Settings
+set smtp_url = "smtp://brett@mchargue.net@127.0.0.1:1026"
+
+# Security (Bridge with STARTTLS)
+set ssl_starttls = yes
+set ssl_force_tls = no
+set ssl_verify_dates = no
+set ssl_verify_host = no
+
+# Status bar indicator
+set status_format = "-%r-[Proton: brett@mchargue.net] %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"

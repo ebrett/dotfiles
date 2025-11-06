@@ -113,7 +113,9 @@ setopt auto_cd
 # Use variables for common paths
 export CODE_DIR="$HOME/Code/Active"
 export RESOURCES_DIR="$HOME/Resources"
-cdpath=($RESOURCES_DIR $CODE_DIR $CODE_DIR/Ruby $CODE_DIR/JavaScript $CODE_DIR/Learning $CODE_DIR/Python)
+export OBSIDIAN_VAULT_HOME="$HOME/vaults"
+
+cdpath=($RESOURCES_DIR $CODE_DIR $CODE_DIR/Ruby $CODE_DIR/JavaScript $CODE_DIR/Learning $CODE_DIR/Python $OBSIDIAN_VAULT_HOME)
 
 export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
@@ -141,8 +143,6 @@ source "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"
 
 export PATH="$HOME/bin/gamadv-xtd3:$PATH"
 export VISUAL="nvim"
-
-export OBSIDIAN_VAULT_HOME="$HOME/Personal"
 
 # Golang environment variables
 export GOROOT=$(brew --prefix go)/libexec

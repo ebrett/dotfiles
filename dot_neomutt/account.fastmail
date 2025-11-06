@@ -1,0 +1,27 @@
+# Fastmail Account Configuration
+# Account: personal@ebrett.me
+
+# Identity
+set realname = "Brett Shane McHargue"
+set from = "personal@ebrett.me"
+
+# IMAP Settings
+set imap_user = "personal@ebrett.me"
+source ~/.neomutt_passwords_fastmail
+set folder = "imaps://personal@ebrett.me@imap.fastmail.com:993"
+set spoolfile = "=INBOX"
+set record = "=Sent"
+set postponed = "=Drafts"
+set trash = "=Trash"
+
+# SMTP Settings
+set smtp_url = "smtps://personal@ebrett.me@smtp.fastmail.com:465"
+
+# Security (Full SSL/TLS)
+set ssl_starttls = no
+set ssl_force_tls = yes
+set ssl_verify_dates = yes
+set ssl_verify_host = yes
+
+# Status bar indicator
+set status_format = "-%r-[Fastmail: personal@ebrett.me] %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
