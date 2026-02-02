@@ -38,6 +38,9 @@ disabled = false
 [golang]
 disabled = false
 
+[gcloud]
+disabled = true
+
 [time]
 disabled = true
 
