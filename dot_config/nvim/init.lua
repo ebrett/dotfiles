@@ -60,6 +60,9 @@ use {
     'joshuavial/aider.nvim'
 }
 
+-- amp.nvim
+use 'sourcegraph/amp.nvim'
+
 if packer_bootstrap then
     require('packer').sync()
 end

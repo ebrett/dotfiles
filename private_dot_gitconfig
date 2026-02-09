@@ -38,7 +38,7 @@
 	autosetupmerge = always
 [merge]
 	tool = vscode
-	ff = false
+	ff = only
 [diff]
 	tool = vscode
 	colorMoved = default
