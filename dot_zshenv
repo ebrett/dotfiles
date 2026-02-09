@@ -1,0 +1,2 @@
+# API keys loaded from ~/.config/ secrets files by scripts that need them.
+# Do NOT export ANTHROPIC_API_KEY here — it conflicts with Claude Code's OAuth auth.
