@@ -1,6 +1,8 @@
-.oh-my-zsh/cache
-.oh-my-zsh/cache/**
-.oh-my-zsh/**/*.zwc
+# oh-my-zsh - ignore everything except custom configs
+.oh-my-zsh/**
+!.oh-my-zsh/custom/**
 .oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+# Private configs managed separately
 private_dot_gitconfig
 private_dot_warp/
