@@ -86,7 +86,10 @@ alias cmcd='cd ~/.local/share/chezmoi'
 alias cmup='chezmoi update'
 
 # Agent-os
-alias prj="~/.agent-os/setup/project.sh"
+alias aosprj="~/agent-os/scripts/project-install.sh"
+alias aosupd="~/agent-os/scripts/project-update.sh"
+alias aosprofile="~/agent-os/scripts/create-profile.sh"
+
 
 # for intel x86_64 brew
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
@@ -139,3 +142,7 @@ dotfile_sync() {
         echo "❌ Sync cancelled."
     fi
 }
+
+# Zoom webinar focus - hide all apps except Zoom
+alias zoom-focus='osascript -e '\''tell application "System Events" to set visible of every process whose visible is true and name is not "Zoom" to false'\'''
+alias zoom-unfocus='osascript -e '\''tell application "System Events" to set visible of every process to true'\'''

@@ -152,3 +152,20 @@ export PATH="$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:$PATH"
 # Load aliases
 [ -f ~/.aliases ] && source ~/.aliases
 export GPG_TTY=$(tty)
+
+# bun completions
+[ -s "/Users/bmc/.bun/_bun" ] && source "/Users/bmc/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# >>> MCP Agent Mail bd path /Users/bmc/.local/bin
+if [[ ":$PATH:" != *":/Users/bmc/.local/bin:"* ]]; then
+  export PATH="/Users/bmc/.local/bin:$PATH"
+fi
+# <<< MCP Agent Mail bd path
+alias gcal='gcalcli --nocache'
+
+# PAI alias
+alias pai='bun ~/.claude/skills/PAI/Tools/pai.ts'
