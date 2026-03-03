@@ -127,7 +127,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export LEDGER_FILE=$HOME/Code/financial_dashboard/main.ledger
+export LEDGER_FILE=$HOME/financial_dashboard/main.ledger
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -168,4 +168,10 @@ fi
 alias gcal='gcalcli --nocache'
 
 # PAI alias
-alias pai='bun ~/.claude/skills/PAI/Tools/pai.ts'
+alias pai='bun /Users/bmc/.claude/skills/PAI/Tools/pai.ts'
+
+# Projects alias
+alias newproject='~/Projects/new-project.sh'
+
+# Added by Antigravity
+export PATH="/Users/bmc/.antigravity/antigravity/bin:$PATH"
