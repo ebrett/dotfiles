@@ -73,5 +73,5 @@ The zsh configuration includes key aliases:
 
 Environment variables point to:
 - GOPATH: `$HOME/go`
-- Obsidian vault: `$HOME/Documents/Personal`
+- Obsidian vault: `$HOME/vaults/knowledge-base`
 - Custom binary paths in `$PATH`
