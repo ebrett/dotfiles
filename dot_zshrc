@@ -176,3 +176,6 @@ alias newproject='~/Projects/new-project.sh'
 
 # Added by Antigravity
 export PATH="/Users/bmc/.antigravity/antigravity/bin:$PATH"
+
+# Rust
+source "$HOME/.cargo/env"
