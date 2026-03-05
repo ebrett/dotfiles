@@ -111,11 +111,12 @@ fi
 setopt auto_cd
 
 # Use variables for common paths
+export PROJECTS_DIR="$HOME/Projects"
 export CODE_DIR="$HOME/Code/Active"
 export RESOURCES_DIR="$HOME/Resources"
 export OBSIDIAN_VAULT_HOME="$HOME/vaults"
 
-cdpath=($RESOURCES_DIR $CODE_DIR $CODE_DIR/Ruby $CODE_DIR/JavaScript $CODE_DIR/Learning $CODE_DIR/Python $OBSIDIAN_VAULT_HOME)
+cdpath=($PROJECTS_DIR $RESOURCES_DIR $CODE_DIR $CODE_DIR/Ruby $CODE_DIR/JavaScript $CODE_DIR/Learning $CODE_DIR/Python $OBSIDIAN_VAULT_HOME)
 
 export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
