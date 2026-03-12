@@ -13,6 +13,10 @@ private_dot_warp/
 .claude/skills/Media/Art/*.png
 .claude/skills/Media/Art/*.jpg
 
+# .claude - raw session transcripts (can contain secrets from tool calls)
+.claude/MEMORY/**/tool-calls.json
+.claude/MEMORY/**/transcript.jsonl
+
 # .claude - runtime/session state (not worth tracking)
 .claude/projects/
 .claude/file-history/
