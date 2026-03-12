@@ -6,3 +6,29 @@
 # Private configs managed separately
 private_dot_gitconfig
 private_dot_warp/
+
+# .claude - exclude binary example images from skills (bloat)
+.claude/skills/Art/Examples/*.png
+.claude/skills/Art/Examples/*.jpg
+.claude/skills/Media/Art/*.png
+.claude/skills/Media/Art/*.jpg
+
+# .claude - runtime/session state (not worth tracking)
+.claude/projects/
+.claude/file-history/
+.claude/history.jsonl
+.claude/debug/
+.claude/todos/
+.claude/session-env/
+.claude/shell-snapshots/
+.claude/paste-cache/
+.claude/image-cache/
+.claude/backups/
+.claude/cache/
+.claude/telemetry/
+.claude/usage-data/
+.claude/mcp-needs-auth-cache.json
+.claude/stats-cache.json
+.claude/tasks/
+.claude/plans/
+.claude/.DS_Store
