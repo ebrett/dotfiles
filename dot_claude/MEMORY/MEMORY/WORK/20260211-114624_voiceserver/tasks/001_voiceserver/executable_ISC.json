@@ -1,0 +1,10 @@
+{
+  "taskId": "001_voiceserver",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-11T11:46:24+07:00",
+  "updatedAt": "2026-02-11T11:48:45+07:00"
+}

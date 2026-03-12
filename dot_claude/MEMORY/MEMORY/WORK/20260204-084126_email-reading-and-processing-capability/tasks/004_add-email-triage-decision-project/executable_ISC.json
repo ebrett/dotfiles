@@ -1,0 +1,10 @@
+{
+  "taskId": "004_add-email-triage-decision-project",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T08:58:28+07:00",
+  "updatedAt": "2026-02-04T09:07:04+07:00"
+}

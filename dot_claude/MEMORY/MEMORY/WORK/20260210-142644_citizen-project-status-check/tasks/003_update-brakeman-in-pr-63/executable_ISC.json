@@ -1,0 +1,10 @@
+{
+  "taskId": "003_update-brakeman-in-pr-63",
+  "status": "PENDING",
+  "effortLevel": "QUICK",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-10T14:40:12+07:00",
+  "updatedAt": "2026-02-10T14:41:57+07:00"
+}

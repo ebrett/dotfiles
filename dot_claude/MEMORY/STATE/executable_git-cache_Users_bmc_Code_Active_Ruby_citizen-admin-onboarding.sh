@@ -1,0 +1,10 @@
+branch='feature/nation-onboarding-admin-ui'
+stash_count=6
+modified=1
+staged=00
+untracked=1
+total_changed=1
+ahead=0
+behind=0
+last_commit_epoch=1772014984
+is_git_repo=true

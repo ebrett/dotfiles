@@ -1,0 +1,10 @@
+{
+  "taskId": "002_test-the-backup",
+  "status": "PENDING",
+  "effortLevel": "QUICK",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T12:15:24+07:00",
+  "updatedAt": "2026-02-04T12:37:53+07:00"
+}

@@ -1,0 +1,10 @@
+{
+  "taskId": "001_designossampledata-checkout",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-11T11:45:38+07:00",
+  "updatedAt": "2026-02-11T11:45:38+07:00"
+}

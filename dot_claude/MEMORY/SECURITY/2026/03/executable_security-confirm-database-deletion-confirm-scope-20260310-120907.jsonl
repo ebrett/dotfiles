@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-03-10T05:09:07.598Z",
+  "session_id": "a2b9bfbc-f16a-4413-aa6b-9c3b80bafcf7",
+  "event_type": "confirm",
+  "tool": "Bash",
+  "category": "bash_command",
+  "target": "psql -U message_store -d message_store -c \"DELETE FROM message_store.messages WHERE stream_name LIKE 'test-%';\" 2>&1",
+  "reason": "Database deletion (confirm scope)",
+  "action_taken": "Prompted user for confirmation"
+}

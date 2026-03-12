@@ -1,0 +1,10 @@
+{
+  "taskId": "001_checkin",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-10T10:57:20+07:00",
+  "updatedAt": "2026-02-10T11:04:44+07:00"
+}

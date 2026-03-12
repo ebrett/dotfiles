@@ -1,0 +1,235 @@
+{
+  "sessions": {
+    "20260312-123428_daily-check-in-morning-routine": {
+      "prd": "MEMORY/WORK/20260312-123428_daily-check-in-morning-routine/PRD.md",
+      "task": "Daily check-in morning routine setup Thursday",
+      "sessionName": "Checkin Session Work Task",
+      "sessionUUID": "1fba7cd6-02a2-416e-8681-8b57b97f7247",
+      "phase": "execute",
+      "progress": "0/10",
+      "effort": "standard",
+      "mode": "interactive",
+      "started": "2026-03-12T12:34:28Z",
+      "updatedAt": "2026-03-12T05:36:51.554Z",
+      "criteria": [
+        {
+          "id": "ISC-1",
+          "description": "Git sync status reported including uncommitted changes alert",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-2",
+          "description": "Guide state presented with Engaged items and Horizon count",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-3",
+          "description": "Yesterday's open loops identified (Athena, Retire-1Password, W11 note)",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-4",
+          "description": "Calendar status noted (no events found or events listed)",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-5",
+          "description": "Inbox count (5 items) presented to Brett",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-6",
+          "description": "Today's strength quote included verbatim from Today's Strength.md",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-7",
+          "description": "Check-in questions asked one at a time (not dumped)",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-8",
+          "description": "Daily note created at 05_Periodic Notes/Daily/2026-03-12.md",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-9",
+          "description": "Daily note has correct YAML frontmatter with all required fields",
+          "type": "criterion",
+          "status": "pending"
+        },
+        {
+          "id": "ISC-10",
+          "description": "Anchor list generated primarily from Engaged items with Guide area tags",
+          "type": "criterion",
+          "status": "pending"
+        }
+      ],
+      "phaseHistory": [
+        {
+          "phase": "OBSERVE",
+          "startedAt": 1773293677511,
+          "criteriaCount": 10,
+          "agentCount": 0,
+          "completedAt": 1773293791413
+        },
+        {
+          "phase": "PLAN",
+          "startedAt": 1773293791413,
+          "criteriaCount": 10,
+          "agentCount": 0,
+          "completedAt": 1773293803258
+        },
+        {
+          "phase": "BUILD",
+          "startedAt": 1773293803258,
+          "criteriaCount": 10,
+          "agentCount": 0,
+          "completedAt": 1773293811554
+        },
+        {
+          "phase": "EXECUTE",
+          "startedAt": 1773293811554,
+          "criteriaCount": 10,
+          "agentCount": 0
+        }
+      ]
+    },
+    "20260312-125000_checkin-session-work-task": {
+      "task": "Checkin Session Work Task",
+      "sessionName": "Checkin Session Work Task",
+      "sessionUUID": "1fba7cd6-02a2-416e-8681-8b57b97f7247",
+      "phase": "native",
+      "progress": "0/0",
+      "effort": "native",
+      "mode": "native",
+      "started": "2026-03-12T05:50:19.593Z",
+      "updatedAt": "2026-03-12T06:51:41.494Z"
+    },
+    "20260312-135613_fix-workon-demsabroad-directory": {
+      "prd": "MEMORY/WORK/20260312-135613_fix-workon-demsabroad-directory/PRD.md",
+      "task": "Fix workon script not finding demsabroad projects",
+      "sessionName": "Tried Workon Athena Says",
+      "sessionUUID": "de22822e-fec0-44c8-af2c-4aa915f99378",
+      "phase": "complete",
+      "progress": "8/8",
+      "effort": "standard",
+      "mode": "interactive",
+      "started": "2026-03-12T06:56:12Z",
+      "updatedAt": "2026-03-12T07:13:38.184Z",
+      "criteria": [
+        {
+          "id": "ISC-1",
+          "description": "`_list_projects` function added to script",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-2",
+          "description": "Dirs with `.git` listed as bare name (e.g., `learn-rust`)",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-3",
+          "description": "Non-git dirs with git children listed as `group/child` (e.g., `demsabroad/athena`)",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-4",
+          "description": "fzf no-arg picker uses `_list_projects` instead of `ls -d`",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-5",
+          "description": "Partial name fzf search uses `_list_projects` instead of `ls -d`",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-6",
+          "description": "`SESSION` uses `SHORT_NAME` (basename) not full path",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-7",
+          "description": "`OBSIDIAN_NOTE` uses `SHORT_NAME` (basename) not full path",
+          "type": "criterion",
+          "status": "completed"
+        },
+        {
+          "id": "ISC-8",
+          "description": "`JOURNAL_PATH` and jrnl calls use `SHORT_NAME` (basename)",
+          "type": "criterion",
+          "status": "completed"
+        }
+      ],
+      "phaseHistory": [
+        {
+          "phase": "OBSERVE",
+          "startedAt": 1773298579157,
+          "criteriaCount": 0,
+          "agentCount": 0,
+          "completedAt": 1773298775832
+        },
+        {
+          "phase": "THINK",
+          "startedAt": 1773298775832,
+          "criteriaCount": 8,
+          "agentCount": 0,
+          "completedAt": 1773299618184
+        },
+        {
+          "phase": "COMPLETE",
+          "startedAt": 1773299618184,
+          "criteriaCount": 8,
+          "agentCount": 0
+        }
+      ]
+    },
+    "20260312-141600_tried-workon-athena-says": {
+      "task": "Tried Workon Athena Says",
+      "sessionName": "Tried Workon Athena Says",
+      "sessionUUID": "de22822e-fec0-44c8-af2c-4aa915f99378",
+      "phase": "starting",
+      "progress": "0/0",
+      "effort": "standard",
+      "mode": "starting",
+      "started": "2026-03-12T07:16:24.227Z",
+      "updatedAt": "2026-03-12T07:19:42.352Z"
+    },
+    "20260312-142800_bring-the-current-branch-up-to-date-with": {
+      "task": "bring the current branch up to date with main branch",
+      "sessionName": "Bring Branch Date Main",
+      "sessionUUID": "38ef4253-4f36-4391-af8a-e53daa040e55",
+      "phase": "native",
+      "progress": "0/0",
+      "effort": "native",
+      "mode": "native",
+      "started": "2026-03-12T07:28:58.035Z",
+      "updatedAt": "2026-03-12T07:48:05.421Z"
+    },
+    "20260312-143500_what-parts-of-claude-should-i-add-to-che": {
+      "task": "what parts of .claude should i add to chezmoi files?",
+      "sessionName": "Parts Claude Chezmoi Files",
+      "sessionUUID": "b32505ee-e1cf-487e-8811-e32c4736c150",
+      "phase": "native",
+      "progress": "0/0",
+      "effort": "native",
+      "mode": "native",
+      "started": "2026-03-12T07:35:01.666Z",
+      "updatedAt": "2026-03-12T07:44:31.719Z"
+    }
+  }
+}

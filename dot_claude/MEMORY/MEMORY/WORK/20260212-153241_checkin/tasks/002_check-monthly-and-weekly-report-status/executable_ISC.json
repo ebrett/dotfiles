@@ -1,0 +1,10 @@
+{
+  "taskId": "002_check-monthly-and-weekly-report-status",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-12T15:38:33+07:00",
+  "updatedAt": "2026-02-12T15:42:07+07:00"
+}

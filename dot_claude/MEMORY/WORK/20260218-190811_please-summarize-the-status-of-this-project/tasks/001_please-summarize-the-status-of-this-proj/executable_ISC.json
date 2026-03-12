@@ -1,0 +1,10 @@
+{
+  "taskId": "001_please-summarize-the-status-of-this-proj",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-18T19:08:11+07:00",
+  "updatedAt": "2026-02-18T19:08:11+07:00"
+}

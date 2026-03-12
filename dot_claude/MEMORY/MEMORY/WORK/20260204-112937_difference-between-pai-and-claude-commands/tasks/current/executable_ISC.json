@@ -1,0 +1,10 @@
+{
+  "taskId": "003_read-task-output-file-for-failed-command",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T11:51:58+07:00",
+  "updatedAt": "2026-02-04T11:51:58+07:00"
+}

@@ -1,0 +1,10 @@
+{
+  "taskId": "001_please-summarise-the-status-of-this-sess",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-03-09T22:23:41+07:00",
+  "updatedAt": "2026-03-09T22:23:41+07:00"
+}

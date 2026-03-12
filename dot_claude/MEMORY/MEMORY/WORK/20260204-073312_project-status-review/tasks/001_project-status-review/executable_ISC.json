@@ -1,0 +1,10 @@
+{
+  "taskId": "001_project-status-review",
+  "status": "PENDING",
+  "effortLevel": "QUICK",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T07:33:12+07:00",
+  "updatedAt": "2026-02-04T07:34:27+07:00"
+}

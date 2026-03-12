@@ -1,0 +1,10 @@
+{
+  "taskId": "001_reflect-for-yesterday",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-06T06:59:17+07:00",
+  "updatedAt": "2026-02-06T07:00:07+07:00"
+}

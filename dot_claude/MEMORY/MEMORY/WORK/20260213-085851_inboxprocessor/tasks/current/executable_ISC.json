@@ -1,0 +1,10 @@
+{
+  "taskId": "001_inboxprocessor",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-13T08:58:51+07:00",
+  "updatedAt": "2026-02-13T09:04:39+07:00"
+}

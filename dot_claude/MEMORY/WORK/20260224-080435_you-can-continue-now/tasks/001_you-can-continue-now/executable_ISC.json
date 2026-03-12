@@ -1,0 +1,10 @@
+{
+  "taskId": "001_you-can-continue-now",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-24T08:04:35+07:00",
+  "updatedAt": "2026-02-24T08:04:35+07:00"
+}

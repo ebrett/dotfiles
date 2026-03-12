@@ -1,0 +1,10 @@
+{
+  "taskId": "002_restore-claude-config-from-backup",
+  "status": "PENDING",
+  "effortLevel": "QUICK",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T06:59:16+07:00",
+  "updatedAt": "2026-02-04T07:04:02+07:00"
+}

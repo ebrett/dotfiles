@@ -1,0 +1,10 @@
+branch='agent-os/product-documentation'
+stash_count=1
+modified=00
+staged=00
+untracked=3
+total_changed=0
+ahead=0
+behind=0
+last_commit_epoch=1771746190
+is_git_repo=true

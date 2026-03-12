@@ -1,0 +1,20 @@
+Here's where things stand:
+
+**Done / merged to main:**
+- Auth & representative onboarding (auth-rep-onboarding spec) — complete, on main
+
+**Current branch (`feat/continuous-deployment`) — code done, needs PR + manual infra:**
+- All workflow files created (CI test job, deploy.yml, fly.toml, deployment standards)
+- **Blocking:** Task 3 (one-time manual Fly.io setup) hasn't been run yet — app creation, Postgres cluster, message_store DB, secrets, and FLY_API_TOKEN in GitHub
+- Once Task 3 is done → open PR → merge → verify deploy triggers
+
+**In progress but stalled (`domain-model-core`):**
+- Only the `meetings` migration exists
+- Still needs: VotingMember, Proxy, Vote, Ballot, domain_events table — the full parliamentary domain
+
+**Logical next steps in order:**
+1. Complete the CD infra setup (Task 3 commands in the plan), merge the current branch
+2. Finish domain-model-core (VotingMember through domain_events)
+3. After domain model: proxy management UI, voting engine, session management
+
+The CD spec is the most immediate — want to knock out Task 3 now, or work on domain model?

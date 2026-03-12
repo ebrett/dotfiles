@@ -1,0 +1,10 @@
+{
+  "taskId": "001_review-killed-voice-server-task-output",
+  "status": "PENDING",
+  "effortLevel": "QUICK",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T11:56:29+07:00",
+  "updatedAt": "2026-02-04T11:56:29+07:00"
+}

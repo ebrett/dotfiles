@@ -1,0 +1,10 @@
+{
+  "taskId": "008_morning-greeting-and-mood-check",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-06T07:49:30+07:00",
+  "updatedAt": "2026-02-06T07:49:37+07:00"
+}

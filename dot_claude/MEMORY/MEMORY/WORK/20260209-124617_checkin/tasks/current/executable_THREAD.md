@@ -1,0 +1,52 @@
+---
+taskId: "003_retrieve-failed-task-output-file"
+title: "Retrieve failed task output file"
+effortLevel: "TRIVIAL"
+status: "IN_PROGRESS"
+createdAt: "2026-02-10T01:54:10+07:00"
+prompt: |
+  <task-notification>
+  <task-id>b9394a2</task-id>
+  <output-file>/private/tmp/claude-502/-Users-bmc-vaults-knowledge-base/tasks/b9394a2.output</output-file>
+  <status>failed</status>
+  <summary>Background command "Retry push after timeout" failed with exit code 1</summary>
+  </task-notification>
+  Read the output file to retrieve the result: /private/tmp/claude-502/-Users-bmc-vaults-knowledge-base/tasks/b9394a2.output
+---
+
+# Algorithm Thread: Retrieve failed task output file
+
+## Phase Log
+
+### 👀 OBSERVE Phase
+_Pending..._
+
+### 🧠 THINK Phase
+_Pending..._
+
+### 📋 PLAN Phase
+_Pending..._
+
+### 🔨 BUILD Phase
+_Pending..._
+
+### ▶️ EXECUTE Phase
+_Pending..._
+
+### ✅ VERIFY Phase
+_Pending..._
+
+### 🎓 LEARN Phase
+_Pending..._
+
+---
+
+## ISC Evolution
+
+_Criteria updates logged here..._
+
+---
+
+## Key Observations
+
+_Important observations during execution..._

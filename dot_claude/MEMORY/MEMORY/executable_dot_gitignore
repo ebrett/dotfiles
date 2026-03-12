@@ -1,0 +1,14 @@
+# Ephemeral state that doesn't need versioning
+STATE/git-cache_*.sh
+STATE/weather-cache.json
+STATE/location-cache.json
+STATE/model-cache.txt
+STATE/integrity-state.json
+
+# Voice events (high-frequency, low value for backup)
+VOICE/voice-events.jsonl
+
+# Temporary/cache files
+*.tmp
+*.cache
+.DS_Store

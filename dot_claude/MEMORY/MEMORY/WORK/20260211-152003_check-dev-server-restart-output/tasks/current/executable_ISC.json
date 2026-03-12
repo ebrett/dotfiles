@@ -1,0 +1,10 @@
+{
+  "taskId": "001_check-dev-server-restart-output",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-11T15:20:03+07:00",
+  "updatedAt": "2026-02-11T15:21:43+07:00"
+}

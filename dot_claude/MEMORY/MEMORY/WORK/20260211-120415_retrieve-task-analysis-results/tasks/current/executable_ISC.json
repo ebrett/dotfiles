@@ -1,0 +1,10 @@
+{
+  "taskId": "001_retrieve-task-analysis-results",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-11T12:04:15+07:00",
+  "updatedAt": "2026-02-11T12:04:44+07:00"
+}

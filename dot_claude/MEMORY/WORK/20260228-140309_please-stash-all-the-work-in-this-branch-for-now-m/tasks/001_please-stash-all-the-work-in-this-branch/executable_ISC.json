@@ -1,0 +1,10 @@
+{
+  "taskId": "001_please-stash-all-the-work-in-this-branch",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-28T14:03:09+07:00",
+  "updatedAt": "2026-02-28T14:03:09+07:00"
+}

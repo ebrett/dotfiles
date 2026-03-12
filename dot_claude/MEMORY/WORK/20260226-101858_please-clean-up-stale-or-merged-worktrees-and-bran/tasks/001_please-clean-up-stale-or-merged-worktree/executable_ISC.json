@@ -1,0 +1,10 @@
+{
+  "taskId": "001_please-clean-up-stale-or-merged-worktree",
+  "status": "PENDING",
+  "effortLevel": "STANDARD",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-26T10:18:58+07:00",
+  "updatedAt": "2026-02-26T10:18:58+07:00"
+}

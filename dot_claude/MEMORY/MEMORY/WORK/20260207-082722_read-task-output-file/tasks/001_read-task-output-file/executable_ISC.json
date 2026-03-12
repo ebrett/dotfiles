@@ -1,0 +1,10 @@
+{
+  "taskId": "001_read-task-output-file",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-07T08:27:22+07:00",
+  "updatedAt": "2026-02-07T08:27:22+07:00"
+}

@@ -1,0 +1,10 @@
+{
+  "taskId": "001_create-github-repository",
+  "status": "PENDING",
+  "effortLevel": "QUICK",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-04T11:58:11+07:00",
+  "updatedAt": "2026-02-04T12:00:12+07:00"
+}

@@ -1,0 +1,10 @@
+{
+  "taskId": "001_session-opening-greeting",
+  "status": "PENDING",
+  "effortLevel": "TRIVIAL",
+  "criteria": [],
+  "antiCriteria": [],
+  "satisfaction": null,
+  "createdAt": "2026-02-07T11:16:29+07:00",
+  "updatedAt": "2026-02-07T11:23:28+07:00"
+}

@@ -1,0 +1,10 @@
+branch='main'
+stash_count=0
+modified=3
+staged=00
+untracked=00
+total_changed=3
+ahead=0
+behind=0
+last_commit_epoch=1770948250
+is_git_repo=true

@@ -1,0 +1,18 @@
+{
+  "active": false,
+  "sessionId": "904f573a-03b5-4cd1-8c4d-14dba9580444",
+  "taskDescription": "Algorithm run",
+  "currentPhase": "COMPLETE",
+  "phaseStartedAt": 1773217176777,
+  "algorithmStartedAt": 1773217176777,
+  "sla": "Standard",
+  "criteria": [],
+  "agents": [],
+  "capabilities": [
+    "Task Tool"
+  ],
+  "phaseHistory": [],
+  "summary": "CD pipeline committed to `feat/continuous-deployment` — CI test job, fly.toml, deploy workflow, and deployment standard all done.",
+  "effortLevel": "Standard",
+  "completedAt": 1773218807162
+}
