@@ -1,0 +1,96 @@
+#!/usr/bin/env zsh
+# think — Vault tmux launcher
+# Usage: think [vault-name-or-partial]
+#        think             (fzf picker)
+
+set -euo pipefail
+
+VAULTS_DIR="$HOME/vaults"
+
+# ── List vaults ─────────────────────────────────────────────────────────────
+
+_list_vaults() {
+  for d in "$VAULTS_DIR"/*/; do
+    [[ -d "$d" ]] || continue
+    basename "$d"
+  done
+}
+
+# ── Resolve vault name ──────────────────────────────────────────────────────
+
+if [[ -z "${1:-}" ]]; then
+  VAULT_NAME=$(
+    _list_vaults | fzf --prompt="vault: " --exit-0
+  ) || { echo "No vault selected."; exit 1; }
+else
+  MATCHED=$(
+    _list_vaults | fzf --query="$1" --select-1 --exit-0 --prompt="vault: " 2>/dev/null
+  ) || MATCHED=""
+  VAULT_NAME="${MATCHED:-$1}"
+fi
+
+VAULT_DIR="$VAULTS_DIR/$VAULT_NAME"
+
+if [[ ! -d "$VAULT_DIR" ]]; then
+  echo "Vault not found: $VAULT_DIR"
+  exit 1
+fi
+
+# tmux session name: lowercase, spaces → hyphens
+SESSION="${VAULT_NAME:l}"
+SESSION="${SESSION// /-}"
+
+# ── Attach if session already exists ────────────────────────────────────────
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  exec tmux attach-session -t "$SESSION"
+fi
+
+# ── Open apps ───────────────────────────────────────────────────────────────
+
+open "obsidian://open?vault=${VAULT_NAME}" 2>/dev/null || true
+open -a Morgen 2>/dev/null || true
+
+# ── Git pull if repo ─────────────────────────────────────────────────────────
+
+if [[ -d "$VAULT_DIR/.git" ]]; then
+  echo "Pulling $VAULT_NAME..."
+  git -C "$VAULT_DIR" pull --ff-only --quiet || echo "! git pull failed (continuing)"
+fi
+
+# ── Default index file for notes window ─────────────────────────────────────
+# Prefer Guide.md (Waves of Focus working doc) > README.md > nothing
+
+INDEX_FILE=""
+if [[ -f "$VAULT_DIR/98_Metadata/Guide.md" ]]; then
+  INDEX_FILE="$VAULT_DIR/98_Metadata/Guide.md"
+elif [[ -f "$VAULT_DIR/README.md" ]]; then
+  INDEX_FILE="$VAULT_DIR/README.md"
+fi
+
+# ── Per-vault hook (runs before window creation) ─────────────────────────────
+# Can override INDEX_FILE or do anything else pre-session.
+
+if [[ -f "$VAULT_DIR/.think" ]]; then
+  source "$VAULT_DIR/.think"
+fi
+
+# ── Create tmux session ──────────────────────────────────────────────────────
+
+# Window 1: shell
+tmux new-session -d -s "$SESSION" -n "shell" -c "$VAULT_DIR"
+
+# Window 2: notes — glow on index file if found, else plain shell
+tmux new-window -t "$SESSION" -n "notes" -c "$VAULT_DIR"
+if [[ -n "$INDEX_FILE" && -f "$INDEX_FILE" ]]; then
+  tmux send-keys -t "${SESSION}:notes" "glow -p '$INDEX_FILE'" Enter
+fi
+
+# Window 3: claude / pai
+tmux new-window -t "$SESSION" -n "claude" -c "$VAULT_DIR"
+tmux send-keys -t "${SESSION}:claude" "pai -l" Enter
+
+# ── Focus shell and attach ───────────────────────────────────────────────────
+
+tmux select-window -t "${SESSION}:shell"
+exec tmux attach-session -t "$SESSION"

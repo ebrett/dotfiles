@@ -1,0 +1,55 @@
+#!/bin/bash
+# refresh-env — Populate project .env files from Proton Pass
+# Run manually after key rotation or when setting up a new machine.
+# Claude is denied from running this script.
+#
+# Usage:
+#   refresh-env              # refresh all known projects
+#   refresh-env learn-rust   # refresh a specific project
+
+set -euo pipefail
+
+PROJECTS="$HOME/Projects"
+
+# Fetch a password field from Proton Pass
+get_secret() {
+  local vault="$1" title="$2"
+  pass-cli item view --vault-name "$vault" --item-title "$title" --output json \
+    | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['item']['content']['content']['Login']['password'])"
+}
+
+refresh_project() {
+  local name="$1"
+  local env_file="$PROJECTS/$name/.env"
+
+  if [[ ! -d "$PROJECTS/$name" ]]; then
+    echo "! Project not found: $PROJECTS/$name"
+    return
+  fi
+
+  case "$name" in
+    learn-rust)
+      echo "READWISE_API_TOKEN=$(get_secret Developer 'Readwise API Token')" > "$env_file"
+      echo "✓ $name/.env updated"
+      ;;
+
+    # Add new projects here:
+    # my-project)
+    #   echo "SOME_API_KEY=$(get_secret VaultName 'Item Title')" > "$env_file"
+    #   echo "✓ $name/.env updated"
+    #   ;;
+
+    *)
+      echo "! No secret mapping defined for: $name"
+      ;;
+  esac
+}
+
+TARGET="${1:-}"
+
+if [[ -n "$TARGET" ]]; then
+  refresh_project "$TARGET"
+else
+  # Refresh all known projects
+  refresh_project learn-rust
+fi

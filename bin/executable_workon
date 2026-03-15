@@ -1,0 +1,487 @@
+#!/usr/bin/env zsh
+# workon — Generic project tmux launcher with project creation
+# Usage: workon [--new|-n] [project-name-or-path]
+#        workon             (fzf picker, includes "[ + New project ]")
+
+set -e
+
+PROJECTS_DIR="$HOME/Projects"
+OBSIDIAN_PROJECTS="$HOME/vaults/knowledge-base/01_Projects"
+JRNL_CONFIG="$HOME/.config/jrnl/jrnl.yaml"
+
+# ── jrnl helpers ───────────────────────────────────────────────────────────
+
+_jrnl_has_journal() {
+  python3 -c "
+import sys, yaml
+config = yaml.safe_load(open(sys.argv[1]))
+print('yes' if sys.argv[2] in (config.get('journals') or {}) else 'no')
+" "$JRNL_CONFIG" "$1"
+}
+
+_jrnl_add_journal() {
+  python3 -c "
+import sys, yaml
+config_path, journal_name, journal_file = sys.argv[1], sys.argv[2], sys.argv[3]
+with open(config_path) as f:
+    config = yaml.safe_load(f)
+if 'journals' not in config:
+    config['journals'] = {}
+config['journals'][journal_name] = {'journal': journal_file}
+with open(config_path, 'w') as f:
+    yaml.dump(config, f, default_flow_style=False, allow_unicode=True)
+" "$JRNL_CONFIG" "$1" "$2"
+}
+
+# ── Ask project mode: returns "draft" or "exploration" ────────────────────
+
+_ask_project_mode() {
+  echo "" >&2
+  echo "A few quick questions to set up your project:" >&2
+  echo "" >&2
+
+  echo "1. Do you have a concrete goal, or are you still figuring out what to build?" >&2
+  echo "   [1] I know what I want to build" >&2
+  echo "   [2] Still figuring it out" >&2
+  printf "   Choice [1/2]: " >&2
+  read q1 </dev/tty
+
+  echo "" >&2
+  echo "2. Do you expect to ship/use this, or is it for learning/research?" >&2
+  echo "   [1] Ship/use it" >&2
+  echo "   [2] Learning or research" >&2
+  printf "   Choice [1/2]: " >&2
+  read q2 </dev/tty
+
+  echo "" >&2
+  printf "3. Do you have a rough sense of scope (>=1 week of real work)? [y/N] " >&2
+  read q3 </dev/tty
+
+  local score=0
+  [[ "$q1" == "2" ]] && (( score++ )) || true
+  [[ "$q2" == "2" ]] && (( score++ )) || true
+  [[ "$q3" != "y" && "$q3" != "Y" ]] && (( score++ )) || true
+
+  if (( score >= 2 )); then
+    echo "" >&2
+    echo "This sounds like an exploration project. Setting status: exploration" >&2
+    echo "exploration"
+  else
+    echo "draft"
+  fi
+}
+
+# ── Collect intent: returns description string or empty ───────────────────
+
+_collect_intent() {
+  echo "" >&2
+  printf "One-line description of what this is? (Enter to skip): " >&2
+  read intent </dev/tty
+  echo "$intent"
+}
+
+# ── Scaffold a new project ─────────────────────────────────────────────────
+
+_scaffold_project() {
+  local name="$1"
+  local project_status="${2:-draft}"
+  local intent="${3:-}"
+  local dir="$PROJECTS_DIR/$name"
+  local today
+  today=$(date +%Y-%m-%d)
+
+  mkdir -p "$dir"
+
+  cat > "$dir/README.md" << TMPL
+# $name
+
+> [One sentence: what this is and why it exists]
+
+## Overview
+
+[2-3 sentences of context]
+
+## Getting Started
+
+[How to set up and run this project]
+TMPL
+
+  cat > "$dir/TASKS.md" << TMPL
+# Tasks — $name
+
+## Active
+
+- [ ] Fill out project anchor and move to active (~/vaults/knowledge-base/01_Projects/${name}.md)
+
+## Backlog
+
+## Done
+
+TMPL
+
+  cat > "$dir/CLAUDE.md" << TMPL
+# Project: $name
+
+## What This Is
+
+[Fill in: purpose, scope, what problem it solves]
+
+## Architecture
+
+[Key technical decisions and structure]
+
+## How to Run
+
+[Commands to start, test, build]
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| README.md | Public-facing overview |
+| TASKS.md | Active work items |
+
+## Key Decisions
+
+| Date | Decision | Why |
+|------|----------|-----|
+| $today | Started project | [Reason] |
+
+## AI Review
+
+Before approving any significant AI-generated output, ask:
+
+1. **"What was the hardest decision you made here?"**
+2. **"What alternatives did you reject, and why?"**
+3. **"What are you least confident about?"**
+
+After shipping a non-obvious solution, document it in \`docs/solutions/\`.
+TMPL
+
+  mkdir -p "$dir/docs/solutions"
+  cat > "$dir/docs/solutions/README.md" << SOLDOC
+# Solutions Library
+
+Captures non-obvious problems and their solutions so future agent sessions
+don't re-derive the same reasoning. One file per solved problem.
+
+## File format
+
+\`\`\`yaml
+---
+problem: One-sentence description
+solution: One-sentence description
+context: Conditions that triggered this
+tags: [ruby, rails, auth, ...]
+date: YYYY-MM-DD
+pr: "#123"  # optional
+---
+\`\`\`
+
+Followed by: Problem → Root cause → Solution → Why this approach → Watch out for.
+
+## Naming
+
+\`YYYY-MM-DD-short-problem-description.md\`
+
+## When to add an entry
+
+After any fix or decision that took real reasoning to reach — not every PR.
+SOLDOC
+
+  git -C "$dir" init --quiet
+  git -C "$dir" add .
+  git -C "$dir" commit --quiet -m "Initial scaffold: $name"
+
+  echo ""
+  echo "✓ Created: $dir"
+  echo "✓ Git initialized with initial commit"
+  echo ""
+  echo "→ Update ~/Projects/PROJECTS.md with this project entry:"
+  echo "  | $name | active | [description] | $today |"
+  echo ""
+  echo "→ Create a Timing project for session tracking:"
+  echo "  Open Timing → + next to Projects → name '$name' → Rule: Path contains '$name'"
+
+  # Obsidian anchor
+  if [[ -d "$OBSIDIAN_PROJECTS" ]]; then
+    local anchor="$OBSIDIAN_PROJECTS/${name}.md"
+    if [[ ! -f "$anchor" ]]; then
+      # Build anchor body: expand via fabric-ai if available, else use as-is
+      local anchor_body="[One sentence: what this is and why it exists]"
+      if [[ -n "$intent" ]]; then
+        if command -v fabric-ai &>/dev/null; then
+          local expanded
+          expanded=$(echo "$intent" | fabric-ai --pattern project-anchor 2>/dev/null) \
+            && anchor_body="$expanded" || anchor_body="$intent"
+        else
+          anchor_body="$intent"
+        fi
+      fi
+
+      cat > "$anchor" << ANCHOR
+---
+status: $project_status
+location: ~/Projects/$name
+created: $today
+---
+
+# $name
+
+$anchor_body
+
+## Quick Access
+
+\`\`\`bash
+cd ~/Projects/$name
+\`\`\`
+
+## Decision Log
+
+- $today: Started project — [reason]
+
+ANCHOR
+      echo "✓ Obsidian anchor: $anchor (status: $project_status)"
+    fi
+  else
+    echo "! No Obsidian projects folder found at $OBSIDIAN_PROJECTS"
+  fi
+
+  # jrnl journal
+  local journal_path="$HOME/Documents/journals/${name}-dev.txt"
+  if [[ -f "$JRNL_CONFIG" ]]; then
+    if [[ "$(_jrnl_has_journal "$name")" == "no" ]]; then
+      _jrnl_add_journal "$name" "$journal_path"
+      echo "✓ jrnl journal: $journal_path"
+    fi
+  fi
+
+  echo ""
+}
+
+# ── List all projects (depth-1 and depth-2 group children) ────────────────
+# A dir is a "group" if it has no .git but contains subdirs that do.
+
+_list_projects() {
+  setopt local_options nullglob
+  local -a subdirs
+  for d in "$PROJECTS_DIR"/*/; do
+    [[ -d "$d" ]] || continue
+    local name=$(basename "$d")
+    if [[ -d "$d/.git" ]]; then
+      # It's a git repo — list as a top-level project
+      echo "$name"
+    else
+      # Check for git-repo children (group dir pattern)
+      subdirs=("$d"*/)
+      local found_child=0
+      for sd in "${subdirs[@]}"; do
+        [[ -d "$sd/.git" ]] || continue
+        echo "$name/$(basename "$sd")"
+        found_child=1
+      done
+      # No git children — still a project dir (e.g. scratch, retire-1password)
+      [[ $found_child -eq 0 ]] && echo "$name"
+    fi
+  done
+}
+
+# ── Parse flags ────────────────────────────────────────────────────────────
+
+FORCE_NEW=0
+if [[ "${1:-}" == "--new" || "${1:-}" == "-n" ]]; then
+  FORCE_NEW=1
+  shift
+fi
+
+# ── Resolve project name / directory ──────────────────────────────────────
+
+if [[ -z "${1:-}" ]]; then
+  # fzf picker with "[ + New project ]" at top
+  PROJECT_NAME=$(
+    { echo "[ + New project ]"; _list_projects; } | \
+    fzf --prompt="project: " --exit-0
+  ) || { echo "No project selected."; exit 1; }
+
+  if [[ "$PROJECT_NAME" == "[ + New project ]" ]]; then
+    printf "Project name: "
+    read PROJECT_NAME </dev/tty
+    if [[ -z "$PROJECT_NAME" ]]; then
+      echo "No name given."
+      exit 1
+    fi
+    FORCE_NEW=1
+  fi
+  PROJECT_DIR="$PROJECTS_DIR/$PROJECT_NAME"
+
+elif [[ "$1" == /* || "$1" == ~* ]]; then
+  # Absolute path: use directly
+  PROJECT_DIR="${1%/}"
+  PROJECT_NAME=$(basename "$PROJECT_DIR")
+
+else
+  # Partial name: fzf with query, auto-select on single match
+  if [[ "$FORCE_NEW" == "1" ]]; then
+    PROJECT_NAME="$1"
+    PROJECT_DIR="$PROJECTS_DIR/$PROJECT_NAME"
+  else
+    MATCHED=$(_list_projects | \
+      fzf --query="$1" --select-1 --exit-0 --prompt="project: " 2>/dev/null) || MATCHED=""
+    if [[ -n "$MATCHED" ]]; then
+      PROJECT_NAME="$MATCHED"
+    else
+      PROJECT_NAME="$1"
+    fi
+    PROJECT_DIR="$PROJECTS_DIR/$PROJECT_NAME"
+  fi
+fi
+
+# Short name (basename only) for tmux sessions, obsidian notes, jrnl journals
+SHORT_NAME=$(basename "$PROJECT_NAME")
+
+# ── Creation flow (project doesn't exist) ─────────────────────────────────
+
+if [[ ! -d "$PROJECT_DIR" ]]; then
+  if [[ "$FORCE_NEW" == "0" ]]; then
+    printf "Project '%s' doesn't exist. Create a new draft project? [y/N] " "$PROJECT_NAME"
+    read CONFIRM </dev/tty
+    if [[ "$CONFIRM" != "y" && "$CONFIRM" != "Y" ]]; then
+      echo "Aborted."
+      exit 0
+    fi
+  fi
+
+  if [[ "$PROJECT_NAME" =~ [[:space:]] ]]; then
+    echo "Error: project name should not contain spaces (use-hyphens-instead)"
+    exit 1
+  fi
+
+  PROJECT_STATUS=$(_ask_project_mode)
+  PROJECT_INTENT=$(_collect_intent)
+
+  _scaffold_project "$PROJECT_NAME" "$PROJECT_STATUS" "$PROJECT_INTENT"
+fi
+
+SESSION="$SHORT_NAME"
+
+# ── Attach if session already exists ──────────────────────────────────────
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  exec tmux attach-session -t "$SESSION"
+fi
+
+# ── Ensure project standards (idempotent, existing projects) ──────────────
+
+# docs/solutions/ — create if missing
+if [[ ! -d "$PROJECT_DIR/docs/solutions" ]]; then
+  mkdir -p "$PROJECT_DIR/docs/solutions"
+  cat > "$PROJECT_DIR/docs/solutions/README.md" << 'SOLDOC'
+# Solutions Library
+
+Captures non-obvious problems and their solutions so future agent sessions
+don't re-derive the same reasoning. One file per solved problem.
+
+## File format
+
+```yaml
+---
+problem: One-sentence description
+solution: One-sentence description
+context: Conditions that triggered this
+tags: [ruby, rails, auth, ...]
+date: YYYY-MM-DD
+pr: "#123"  # optional
+---
+```
+
+Followed by: Problem → Root cause → Solution → Why this approach → Watch out for.
+
+## Naming
+
+`YYYY-MM-DD-short-problem-description.md`
+
+## When to add an entry
+
+After any fix or decision that took real reasoning to reach — not every PR.
+SOLDOC
+  echo "✓ Created docs/solutions/ (solutions library)"
+fi
+
+# AI Review section in CLAUDE.md — append if header not present
+if [[ -f "$PROJECT_DIR/CLAUDE.md" ]] && ! grep -q "## AI Review" "$PROJECT_DIR/CLAUDE.md"; then
+  cat >> "$PROJECT_DIR/CLAUDE.md" << 'AIREV'
+
+## AI Review
+
+Before approving any significant AI-generated output, ask:
+
+1. **"What was the hardest decision you made here?"**
+2. **"What alternatives did you reject, and why?"**
+3. **"What are you least confident about?"**
+
+After shipping a non-obvious solution, document it in `docs/solutions/`.
+AIREV
+  echo "✓ Added AI Review section to CLAUDE.md"
+fi
+
+# ── Detect dev start command ───────────────────────────────────────────────
+
+DEV_CMD=""
+if [[ -x "$PROJECT_DIR/bin/dev" ]]; then
+  DEV_CMD="bin/dev"
+elif [[ -f "$PROJECT_DIR/package.json" ]]; then
+  DEV_CMD="bun run dev"
+fi
+# Cargo.toml and pyproject.toml: no standard run command, skip
+
+# ── Ensure jrnl journal exists for project ────────────────────────────────
+
+JOURNAL_PATH="$HOME/Documents/journals/${SHORT_NAME}-dev.txt"
+
+if [[ -f "$JRNL_CONFIG" ]] && [[ "$(_jrnl_has_journal "$SHORT_NAME")" == "no" ]]; then
+  _jrnl_add_journal "$SHORT_NAME" "$JOURNAL_PATH"
+fi
+
+# ── Create tmux session ────────────────────────────────────────────────────
+
+# Window 1: shell (created with new-session)
+tmux new-session -d -s "$SESSION" -n "shell" -c "$PROJECT_DIR"
+
+# Window 2: dev (only if command detected)
+if [[ -n "$DEV_CMD" ]]; then
+  tmux new-window -t "$SESSION" -n "dev" -c "$PROJECT_DIR"
+  tmux send-keys -t "${SESSION}:dev" "$DEV_CMD" Enter
+fi
+
+# Window 3: notes — vertical split (left=glow, right=jrnl)
+tmux new-window -t "$SESSION" -n "notes" -c "$PROJECT_DIR"
+OBSIDIAN_NOTE="$OBSIDIAN_PROJECTS/${SHORT_NAME}.md"
+if [[ -f "$OBSIDIAN_NOTE" ]]; then
+  tmux send-keys -t "${SESSION}:notes" "glow -p '$OBSIDIAN_NOTE'" Enter
+else
+  tmux send-keys -t "${SESSION}:notes" "echo 'No Obsidian note found for ${SHORT_NAME}'" Enter
+fi
+# Split vertically (below) for jrnl pane
+tmux split-window -t "${SESSION}:notes" -v -c "$PROJECT_DIR"
+tmux send-keys -t "${SESSION}:notes" "jrnl ${SHORT_NAME} "
+# Note: no Enter — Brett hits Enter when ready to log
+
+# Window 4: git
+tmux new-window -t "$SESSION" -n "git" -c "$PROJECT_DIR"
+tmux send-keys -t "${SESSION}:git" "git status" Enter
+
+# Window 5: claude / pai
+tmux new-window -t "$SESSION" -n "claude" -c "$PROJECT_DIR"
+tmux send-keys -t "${SESSION}:claude" "pai -l" Enter
+
+# ── Per-project customization hook ────────────────────────────────────────
+
+if [[ -x "$PROJECT_DIR/.tmux" ]]; then
+  source "$PROJECT_DIR/.tmux"
+fi
+
+# ── Focus shell window and attach ─────────────────────────────────────────
+
+tmux select-window -t "${SESSION}:shell"
+
+exec tmux attach-session -t "$SESSION"

@@ -1,0 +1,83 @@
+[
+  {
+    "name": "TaskCreate",
+    "input": {
+      "subject": "Identity votes assessed honestly and recorded",
+      "description": "All four identity votes (movement, nutrition, purpose, boundary) reviewed conversationally with Brett, marked complete or incomplete based on actual day, final count calculated (0-4)",
+      "activeForm": "Assessing identity votes"
+    },
+    "timestamp": "2026-02-06T10:32:13.131Z"
+  },
+  {
+    "name": "TaskCreate",
+    "input": {
+      "subject": "Today's story captured with meaning",
+      "description": "Narrative reflection written that captures what happened, how it felt, what stood out - not every detail, just what matters",
+      "activeForm": "Capturing today's story"
+    },
+    "timestamp": "2026-02-06T10:32:14.279Z"
+  },
+  {
+    "name": "TaskCreate",
+    "input": {
+      "subject": "Insights and learnings documented",
+      "description": "What today taught Brett - realizations, connections, questions that emerged - written down for future reference",
+      "activeForm": "Documenting insights"
+    },
+    "timestamp": "2026-02-06T10:32:15.300Z"
+  },
+  {
+    "name": "TaskCreate",
+    "input": {
+      "subject": "Tomorrow's intentions set gently",
+      "description": "2-3 gentle intentions (not demands) for tomorrow that would make it feel good, based on conversation",
+      "activeForm": "Setting tomorrow's intentions"
+    },
+    "timestamp": "2026-02-06T10:32:16.548Z"
+  },
+  {
+    "name": "TaskCreate",
+    "input": {
+      "subject": "Daily note updated and committed",
+      "description": "Today's daily note (05_Periodic Notes/Daily/2026-02-06.md) updated with reflection content and committed to git with push",
+      "activeForm": "Updating daily note"
+    },
+    "timestamp": "2026-02-06T10:32:18.311Z"
+  },
+  {
+    "name": "TaskList",
+    "input": {},
+    "timestamp": "2026-02-06T10:32:23.358Z"
+  },
+  {
+    "name": "Bash",
+    "input": {
+      "command": "date +\"%A, %B %d, %Y - %H:%M\"",
+      "description": "Get current date and time"
+    },
+    "timestamp": "2026-02-06T10:32:39.087Z"
+  },
+  {
+    "name": "Read",
+    "input": {
+      "file_path": "/Users/bmc/vaults/knowledge-base/05_Periodic Notes/Daily/2026-02-06.md"
+    },
+    "timestamp": "2026-02-06T10:32:39.999Z"
+  },
+  {
+    "name": "TaskUpdate",
+    "input": {
+      "taskId": "1",
+      "status": "completed"
+    },
+    "timestamp": "2026-02-06T11:37:24.631Z"
+  },
+  {
+    "name": "TaskUpdate",
+    "input": {
+      "taskId": "2",
+      "status": "in_progress"
+    },
+    "timestamp": "2026-02-06T11:37:25.044Z"
+  }
+]
