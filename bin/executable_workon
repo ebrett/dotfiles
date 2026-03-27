@@ -7,31 +7,6 @@ set -e
 
 PROJECTS_DIR="$HOME/Projects"
 OBSIDIAN_PROJECTS="$HOME/vaults/knowledge-base/01_Projects"
-JRNL_CONFIG="$HOME/.config/jrnl/jrnl.yaml"
-
-# ── jrnl helpers ───────────────────────────────────────────────────────────
-
-_jrnl_has_journal() {
-  python3 -c "
-import sys, yaml
-config = yaml.safe_load(open(sys.argv[1]))
-print('yes' if sys.argv[2] in (config.get('journals') or {}) else 'no')
-" "$JRNL_CONFIG" "$1"
-}
-
-_jrnl_add_journal() {
-  python3 -c "
-import sys, yaml
-config_path, journal_name, journal_file = sys.argv[1], sys.argv[2], sys.argv[3]
-with open(config_path) as f:
-    config = yaml.safe_load(f)
-if 'journals' not in config:
-    config['journals'] = {}
-config['journals'][journal_name] = {'journal': journal_file}
-with open(config_path, 'w') as f:
-    yaml.dump(config, f, default_flow_style=False, allow_unicode=True)
-" "$JRNL_CONFIG" "$1" "$2"
-}
 
 # ── Ask project mode: returns "draft" or "exploration" ────────────────────
 
@@ -247,15 +222,6 @@ ANCHOR
     echo "! No Obsidian projects folder found at $OBSIDIAN_PROJECTS"
   fi
 
-  # jrnl journal
-  local journal_path="$HOME/Documents/journals/${name}-dev.txt"
-  if [[ -f "$JRNL_CONFIG" ]]; then
-    if [[ "$(_jrnl_has_journal "$name")" == "no" ]]; then
-      _jrnl_add_journal "$name" "$journal_path"
-      echo "✓ jrnl journal: $journal_path"
-    fi
-  fi
-
   echo ""
 }
 
@@ -336,7 +302,7 @@ else
   fi
 fi
 
-# Short name (basename only) for tmux sessions, obsidian notes, jrnl journals
+# Short name (basename only) for tmux sessions and obsidian notes
 SHORT_NAME=$(basename "$PROJECT_NAME")
 
 # ── Creation flow (project doesn't exist) ─────────────────────────────────
@@ -434,14 +400,6 @@ elif [[ -f "$PROJECT_DIR/package.json" ]]; then
 fi
 # Cargo.toml and pyproject.toml: no standard run command, skip
 
-# ── Ensure jrnl journal exists for project ────────────────────────────────
-
-JOURNAL_PATH="$HOME/Documents/journals/${SHORT_NAME}-dev.txt"
-
-if [[ -f "$JRNL_CONFIG" ]] && [[ "$(_jrnl_has_journal "$SHORT_NAME")" == "no" ]]; then
-  _jrnl_add_journal "$SHORT_NAME" "$JOURNAL_PATH"
-fi
-
 # ── Create tmux session ────────────────────────────────────────────────────
 
 # Window 1: shell (created with new-session)
@@ -453,7 +411,7 @@ if [[ -n "$DEV_CMD" ]]; then
   tmux send-keys -t "${SESSION}:dev" "$DEV_CMD" Enter
 fi
 
-# Window 3: notes — vertical split (left=glow, right=jrnl)
+# Window 3: notes
 tmux new-window -t "$SESSION" -n "notes" -c "$PROJECT_DIR"
 OBSIDIAN_NOTE="$OBSIDIAN_PROJECTS/${SHORT_NAME}.md"
 if [[ -f "$OBSIDIAN_NOTE" ]]; then
@@ -461,10 +419,6 @@ if [[ -f "$OBSIDIAN_NOTE" ]]; then
 else
   tmux send-keys -t "${SESSION}:notes" "echo 'No Obsidian note found for ${SHORT_NAME}'" Enter
 fi
-# Split vertically (below) for jrnl pane
-tmux split-window -t "${SESSION}:notes" -v -c "$PROJECT_DIR"
-tmux send-keys -t "${SESSION}:notes" "jrnl ${SHORT_NAME} "
-# Note: no Enter — Brett hits Enter when ready to log
 
 # Window 4: git
 tmux new-window -t "$SESSION" -n "git" -c "$PROJECT_DIR"

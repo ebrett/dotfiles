@@ -1,0 +1,74 @@
+# Taps
+tap "42futures/firm"
+tap "cloudflare/cloudflare"
+tap "ngrok/ngrok"
+tap "protonpass/tap"
+tap "roots/tap"
+tap "shopify/shopify"
+tap "steipete/tap"
+tap "steveyegge/beads"
+
+# Shell & Terminal
+brew "zsh"
+brew "zsh-syntax-highlighting"
+brew "zsh-autosuggestions"
+brew "tmux"
+brew "starship"
+
+# Version Control
+brew "git"
+brew "git-delta"
+brew "gh"
+brew "lazygit"
+brew "git-filter-repo"
+brew "git-secrets"
+
+# File & Search
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "eza"
+brew "fzf"
+brew "tree"
+brew "glow"
+brew "unar"
+
+# Editors & Mail
+brew "neovim"
+brew "neomutt"
+
+# Dev Environment
+brew "direnv"
+brew "mise"
+brew "chezmoi"
+brew "age"
+brew "gnupg"
+brew "protonpass/tap/pass-cli"
+
+# Network & API
+brew "httpie"
+
+# Data & Utilities
+brew "jq"
+brew "watch"
+brew "tldr"
+
+# GUI Apps
+cask "warp"
+cask "ghostty"
+cask "iterm2"
+cask "firefox"
+cask "obsidian"
+cask "raycast"
+cask "visual-studio-code"
+cask "zed"
+cask "docker"
+cask "setapp"
+cask "signal"
+cask "whatsapp"
+cask "proton-pass"
+cask "omnifocus"
+cask "canva"
+cask "element"
+cask "git-credential-manager"
+cask "chromedriver"

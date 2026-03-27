@@ -133,6 +133,10 @@ dotfile_sync() {
     fi
 }
 
+# VeraCrypt private vault
+alias vc='mkdir -p /Volumes/Private && veracrypt --text --mount /Volumes/Dalinar/Videos/Private.vc /Volumes/Private'
+alias unvc='veracrypt --text --dismount /Volumes/Private'
+
 # Zoom webinar focus - hide all apps except Zoom
 alias zoom-focus='osascript -e '\''tell application "System Events" to set visible of every process whose visible is true and name is not "Zoom" to false'\'''
 alias zoom-unfocus='osascript -e '\''tell application "System Events" to set visible of every process to true'\'''

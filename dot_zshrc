@@ -177,5 +177,10 @@ alias newproject='~/Projects/new-project.sh'
 # Added by Antigravity
 export PATH="/Users/bmc/.antigravity/antigravity/bin:$PATH"
 
+# Dark/Light mode toggles
+alias darkmode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to true'"
+alias lightmode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to false'"
+alias togglemode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
+
 # Rust
 source "$HOME/.cargo/env"
