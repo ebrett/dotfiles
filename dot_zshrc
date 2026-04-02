@@ -184,3 +184,5 @@ alias togglemode="osascript -e 'tell app \"System Events\" to tell appearance pr
 
 # Rust
 source "$HOME/.cargo/env"
+
+ANTHROPIC_API_KEY=REDACTED
