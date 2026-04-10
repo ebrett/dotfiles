@@ -1,0 +1,429 @@
+#!/usr/bin/env zsh
+# trabajo — cmux project workspace launcher
+# Usage: trabajo [--new|-n] [project-name-or-path]
+#        trabajo             (fzf picker, includes "[ + Nuevo proyecto ]")
+
+set -euo pipefail
+
+PROJECTS_DIR="$HOME/Projects"
+OBSIDIAN_PROJECTS="$HOME/vaults/knowledge-base/01_Projects"
+
+# ── Require cmux ──────────────────────────────────────────────────────────
+
+if ! cmux ping &>/dev/null; then
+  echo "cmux is not running. Open cmux first."
+  exit 1
+fi
+
+source "${0:A:h}/cmux-helpers.zsh"
+
+# ── Solutions README (shared template) ────────────────────────────────────
+
+_write_solutions_readme() {
+  cat > "$1/README.md" << 'SOLDOC'
+# Solutions Library
+
+Captures non-obvious problems and their solutions so future agent sessions
+don't re-derive the same reasoning. One file per solved problem.
+
+## File format
+
+```yaml
+---
+problem: One-sentence description
+solution: One-sentence description
+context: Conditions that triggered this
+tags: [ruby, rails, auth, ...]
+date: YYYY-MM-DD
+pr: "#123"  # optional
+---
+```
+
+Followed by: Problem → Root cause → Solution → Why this approach → Watch out for.
+
+## Naming
+
+`YYYY-MM-DD-short-problem-description.md`
+
+## When to add an entry
+
+After any fix or decision that took real reasoning to reach — not every PR.
+SOLDOC
+}
+
+# ── Ask project mode: returns "draft" or "exploration" ────────────────────
+
+_ask_project_mode() {
+  echo "" >&2
+  echo "A few quick questions to set up your project:" >&2
+  echo "" >&2
+
+  echo "1. Do you have a concrete goal, or are you still figuring out what to build?" >&2
+  echo "   [1] I know what I want to build" >&2
+  echo "   [2] Still figuring it out" >&2
+  printf "   Choice [1/2]: " >&2
+  read q1 </dev/tty
+
+  echo "" >&2
+  echo "2. Do you expect to ship/use this, or is it for learning/research?" >&2
+  echo "   [1] Ship/use it" >&2
+  echo "   [2] Learning or research" >&2
+  printf "   Choice [1/2]: " >&2
+  read q2 </dev/tty
+
+  echo "" >&2
+  printf "3. Do you have a rough sense of scope (>=1 week of real work)? [y/N] " >&2
+  read q3 </dev/tty
+
+  local score=0
+  if [[ "$q1" == "2" ]]; then score=$(( score + 1 )); fi
+  if [[ "$q2" == "2" ]]; then score=$(( score + 1 )); fi
+  if [[ "$q3" != "y" && "$q3" != "Y" ]]; then score=$(( score + 1 )); fi
+
+  if (( score >= 2 )); then
+    echo "" >&2
+    echo "This sounds like an exploration project. Setting status: exploration" >&2
+    echo "exploration"
+  else
+    echo "draft"
+  fi
+}
+
+# ── Collect intent: returns description string or empty ───────────────────
+
+_collect_intent() {
+  echo "" >&2
+  printf "One-line description of what this is? (Enter to skip): " >&2
+  read intent </dev/tty
+  echo "$intent"
+}
+
+# ── Scaffold a new project ─────────────────────────────────────────────────
+
+_scaffold_project() {
+  local name="$1"
+  local project_status="${2:-draft}"
+  local intent="${3:-}"
+  local dir="$PROJECTS_DIR/$name"
+  local today
+  today=$(date +%Y-%m-%d)
+
+  mkdir -p "$dir"
+
+  cat > "$dir/README.md" << TMPL
+# $name
+
+> [One sentence: what this is and why it exists]
+
+## Overview
+
+[2-3 sentences of context]
+
+## Getting Started
+
+[How to set up and run this project]
+TMPL
+
+  cat > "$dir/TASKS.md" << TMPL
+# Tasks — $name
+
+## Active
+
+- [ ] Fill out project anchor and move to active (~/vaults/knowledge-base/01_Projects/${name}.md)
+
+## Backlog
+
+## Done
+
+TMPL
+
+  cat > "$dir/CLAUDE.md" << TMPL
+# Project: $name
+
+## What This Is
+
+[Fill in: purpose, scope, what problem it solves]
+
+## Architecture
+
+[Key technical decisions and structure]
+
+## How to Run
+
+[Commands to start, test, build]
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| README.md | Public-facing overview |
+| TASKS.md | Active work items |
+
+## Key Decisions
+
+| Date | Decision | Why |
+|------|----------|-----|
+| $today | Started project | [Reason] |
+
+## AI Review
+
+Before approving any significant AI-generated output, ask:
+
+1. **"What was the hardest decision you made here?"**
+2. **"What alternatives did you reject, and why?"**
+3. **"What are you least confident about?"**
+
+After shipping a non-obvious solution, document it in \`docs/solutions/\`.
+
+## Workspace Hook
+
+\`$dir/.cmux\` is sourced after the cmux workspace is created.
+Use it to add extra panes or send commands. \$CMUX_WORKSPACE_ID is set.
+TMPL
+
+  cat > "$dir/.cmux-config" << CMUXCFG
+# cmux workspace config — $name
+# color: Red Crimson Orange Amber Olive Green Teal Aqua Blue Navy Indigo Purple Magenta Rose Brown Charcoal
+#color=Blue
+# pin: true|false  (keep this workspace pinned at the top of the sidebar)
+#pin=false
+CMUXCFG
+
+  mkdir -p "$dir/docs/solutions"
+  _write_solutions_readme "$dir/docs/solutions"
+
+  git -C "$dir" init --quiet
+  git -C "$dir" add .
+  git -C "$dir" commit --quiet -m "Initial scaffold: $name"
+
+  echo ""
+  echo "✓ Creado: $dir"
+  echo "✓ Git initialized with initial commit"
+  echo ""
+  echo "→ Update ~/Projects/PROJECTS.md with this project entry:"
+  echo "  | $name | active | [description] | $today |"
+  echo ""
+  echo "→ Create a Timing project for session tracking:"
+  echo "  Open Timing → + next to Projects → name '$name' → Rule: Path contains '$name'"
+
+  # Obsidian anchor
+  if [[ -d "$OBSIDIAN_PROJECTS" ]]; then
+    local anchor="$OBSIDIAN_PROJECTS/${name}.md"
+    if [[ ! -f "$anchor" ]]; then
+      local anchor_body="[One sentence: what this is and why it exists]"
+      if [[ -n "$intent" ]]; then
+        if command -v fabric-ai &>/dev/null; then
+          local expanded
+          expanded=$(echo "$intent" | fabric-ai --pattern project-anchor 2>/dev/null) \
+            && anchor_body="$expanded" || anchor_body="$intent"
+        else
+          anchor_body="$intent"
+        fi
+      fi
+
+      cat > "$anchor" << ANCHOR
+---
+status: $project_status
+location: ~/Projects/$name
+created: $today
+---
+
+# $name
+
+$anchor_body
+
+## Quick Access
+
+\`\`\`bash
+cd ~/Projects/$name
+\`\`\`
+
+## Decision Log
+
+- $today: Started project — [reason]
+
+ANCHOR
+      echo "✓ Obsidian anchor: $anchor (status: $project_status)"
+    fi
+  else
+    echo "! No Obsidian projects folder found at $OBSIDIAN_PROJECTS"
+  fi
+
+  echo ""
+}
+
+# ── List all projects (depth-1 and depth-2 group children) ────────────────
+
+_list_projects() {
+  setopt local_options nullglob
+  local -a subdirs
+  for d in "$PROJECTS_DIR"/*/; do
+    [[ -d "$d" ]] || continue
+    local name=$(basename "$d")
+    if [[ -d "$d/.git" ]]; then
+      echo "$name"
+    else
+      subdirs=("$d"*/)
+      local found_child=0
+      for sd in "${subdirs[@]}"; do
+        [[ -d "$sd/.git" ]] || continue
+        echo "$name/$(basename "$sd")"
+        found_child=1
+      done
+      [[ $found_child -eq 0 ]] && echo "$name"
+    fi
+  done
+}
+
+# ── Parse flags ────────────────────────────────────────────────────────────
+
+FORCE_NEW=0
+if [[ "${1:-}" == "--new" || "${1:-}" == "-n" ]]; then
+  FORCE_NEW=1
+  shift
+fi
+
+# ── Resolve project name / directory ──────────────────────────────────────
+
+if [[ -z "${1:-}" ]]; then
+  PROJECT_NAME=$(
+    { echo "[ + Nuevo proyecto ]"; _list_projects; } | \
+    fzf --prompt="proyecto: " --exit-0
+  ) || { echo "No seleccionado."; exit 1; }
+
+  if [[ "$PROJECT_NAME" == "[ + Nuevo proyecto ]" ]]; then
+    printf "Nombre del proyecto: "
+    read PROJECT_NAME </dev/tty
+    if [[ -z "$PROJECT_NAME" ]]; then
+      echo "No name given."
+      exit 1
+    fi
+    FORCE_NEW=1
+  fi
+  PROJECT_DIR="$PROJECTS_DIR/$PROJECT_NAME"
+
+elif [[ "$1" == /* || "$1" == ~* ]]; then
+  PROJECT_DIR="${1%/}"
+  PROJECT_NAME=$(basename "$PROJECT_DIR")
+
+else
+  if (( FORCE_NEW )); then
+    PROJECT_NAME="$1"
+    PROJECT_DIR="$PROJECTS_DIR/$PROJECT_NAME"
+  else
+    MATCHED=$(_list_projects | \
+      fzf --query="$1" --select-1 --exit-0 --prompt="proyecto: " 2>/dev/null) || MATCHED=""
+    if [[ -n "$MATCHED" ]]; then
+      PROJECT_NAME="$MATCHED"
+    else
+      PROJECT_NAME="$1"
+    fi
+    PROJECT_DIR="$PROJECTS_DIR/$PROJECT_NAME"
+  fi
+fi
+
+SESSION=$(basename "$PROJECT_NAME")
+
+# ── Select if workspace already exists ────────────────────────────────────
+
+WORKSPACE_REF=$(_cmux_find_workspace "$SESSION")
+if [[ -n "$WORKSPACE_REF" ]]; then
+  _cmux_select_workspace "$WORKSPACE_REF"
+  exit 0
+fi
+
+# ── Creation flow (project doesn't exist) ─────────────────────────────────
+
+if [[ ! -d "$PROJECT_DIR" ]]; then
+  if (( ! FORCE_NEW )); then
+    printf "Proyecto '%s' no existe. ¿Crear nuevo? [y/N] " "$PROJECT_NAME"
+    read CONFIRM </dev/tty
+    if [[ "$CONFIRM" != "y" && "$CONFIRM" != "Y" ]]; then
+      echo "Aborted."
+      exit 0
+    fi
+  fi
+
+  if [[ "$PROJECT_NAME" =~ [[:space:]] ]]; then
+    echo "Error: project name should not contain spaces (use-hyphens-instead)"
+    exit 1
+  fi
+
+  PROJECT_STATUS=$(_ask_project_mode)
+  PROJECT_INTENT=$(_collect_intent)
+
+  _scaffold_project "$PROJECT_NAME" "$PROJECT_STATUS" "$PROJECT_INTENT"
+fi
+
+# ── Ensure project standards (idempotent, existing projects) ──────────────
+
+if [[ ! -d "$PROJECT_DIR/docs/solutions" ]]; then
+  mkdir -p "$PROJECT_DIR/docs/solutions"
+  _write_solutions_readme "$PROJECT_DIR/docs/solutions"
+  echo "✓ Created docs/solutions/ (solutions library)"
+fi
+
+if [[ -f "$PROJECT_DIR/CLAUDE.md" ]] && ! grep -q "## AI Review" "$PROJECT_DIR/CLAUDE.md"; then
+  cat >> "$PROJECT_DIR/CLAUDE.md" << 'AIREV'
+
+## AI Review
+
+Before approving any significant AI-generated output, ask:
+
+1. **"What was the hardest decision you made here?"**
+2. **"What alternatives did you reject, and why?"**
+3. **"What are you least confident about?"**
+
+After shipping a non-obvious solution, document it in `docs/solutions/`.
+AIREV
+  echo "✓ Added AI Review section to CLAUDE.md"
+fi
+
+# ── Detect dev command + port ─────────────────────────────────────────────
+
+DEV_CMD=""
+DEV_PORT=3000
+
+if [[ -x "$PROJECT_DIR/bin/dev" ]]; then
+  DEV_CMD="bin/dev"
+elif [[ -f "$PROJECT_DIR/package.json" ]]; then
+  DEV_CMD="bun run dev"
+  DEV_PORT=$(jq -r '.scripts // {} | to_entries[].value' "$PROJECT_DIR/package.json" 2>/dev/null \
+    | grep -oE -- '--port[= ]?[0-9]+' | grep -oE '[0-9]+' | head -1)
+  DEV_PORT="${DEV_PORT:-3000}"
+elif [[ -f "$PROJECT_DIR/Makefile" ]] && grep -q "^dev:" "$PROJECT_DIR/Makefile" 2>/dev/null; then
+  DEV_CMD="make dev"
+fi
+
+# ── Create cmux workspace ─────────────────────────────────────────────────
+
+WORKSPACE_REF=$(cmux new-workspace --name "$SESSION" --cwd "$PROJECT_DIR" | awk '{print $2}')
+
+WS_TREE=$(cmux --json tree --workspace "$WORKSPACE_REF")
+SHELL_PANE=$(jq -r '.windows[0].workspaces[0].panes[0].ref' <<< "$WS_TREE")
+SHELL_SURFACE=$(jq -r '.windows[0].workspaces[0].panes[0].selected_surface_ref' <<< "$WS_TREE")
+
+if [[ -n "$DEV_CMD" ]]; then
+  # 2×2 grid: split-down focuses dev naturally; browser-right uses that focus;
+  # then split-right from shell for pai — no extra tree query needed.
+  DEV_SURFACE=$(cmux new-split down --workspace "$WORKSPACE_REF" --surface "$SHELL_SURFACE" | awk '{print $2}')
+  cmux new-pane --type browser --direction right --workspace "$WORKSPACE_REF" \
+    --url "http://localhost:${DEV_PORT}" > /dev/null
+  PAI_SURFACE=$(cmux new-split right --workspace "$WORKSPACE_REF" --surface "$SHELL_SURFACE" | awk '{print $2}')
+  cmux send --workspace "$WORKSPACE_REF" --surface "$PAI_SURFACE" "pai -l\n"
+  # Send dev command after layout is fully built (avoids focus races)
+  cmux send --workspace "$WORKSPACE_REF" --surface "$DEV_SURFACE" "${DEV_CMD}\n"
+else
+  PAI_SURFACE=$(cmux new-split right --workspace "$WORKSPACE_REF" --surface "$SHELL_SURFACE" | awk '{print $2}')
+  cmux send --workspace "$WORKSPACE_REF" --surface "$PAI_SURFACE" "pai -l\n"
+fi
+
+_cmux_apply_workspace_config "$PROJECT_DIR/.cmux-config" "$WORKSPACE_REF"
+cmux focus-pane --pane "$SHELL_PANE" --workspace "$WORKSPACE_REF"
+cmux notify --workspace "$WORKSPACE_REF" --title "$SESSION" --body "Workspace listo"
+
+# ── Per-project cmux hook ─────────────────────────────────────────────────
+
+if [[ -x "$PROJECT_DIR/.cmux" ]]; then
+  CMUX_WORKSPACE_ID="$WORKSPACE_REF" source "$PROJECT_DIR/.cmux"
+fi

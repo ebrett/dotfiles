@@ -1,0 +1,89 @@
+#!/usr/bin/env zsh
+# pienso — cmux vault workspace launcher
+# Usage: pienso [vault-name-or-partial]
+#        pienso             (fzf picker)
+
+set -euo pipefail
+
+VAULTS_DIR="$HOME/vaults"
+
+# ── Require cmux ──────────────────────────────────────────────────────────
+
+if ! cmux ping &>/dev/null; then
+  echo "cmux is not running. Open cmux first."
+  exit 1
+fi
+
+source "${0:A:h}/cmux-helpers.zsh"
+
+# ── List vaults ──────────────────────────────────────────────────────────
+
+_list_vaults() {
+  for d in "$VAULTS_DIR"/*/; do
+    [[ -d "$d" ]] || continue
+    basename "$d"
+  done
+}
+
+# ── Resolve vault name ───────────────────────────────────────────────────
+
+if [[ -z "${1:-}" ]]; then
+  VAULT_NAME=$(
+    _list_vaults | fzf --prompt="bóveda: " --exit-0
+  ) || { echo "No seleccionado."; exit 1; }
+else
+  MATCHED=$(
+    _list_vaults | fzf --query="$1" --select-1 --exit-0 --prompt="bóveda: " 2>/dev/null
+  ) || MATCHED=""
+  VAULT_NAME="${MATCHED:-$1}"
+fi
+
+VAULT_DIR="$VAULTS_DIR/$VAULT_NAME"
+
+if [[ ! -d "$VAULT_DIR" ]]; then
+  echo "Bóveda no encontrada: $VAULT_DIR"
+  exit 1
+fi
+
+# workspace name: lowercase, spaces → hyphens
+SESSION="${VAULT_NAME:l}"
+SESSION="${SESSION// /-}"
+
+# ── Select if workspace already exists ────────────────────────────────────
+
+WORKSPACE_REF=$(_cmux_find_workspace "$SESSION")
+if [[ -n "$WORKSPACE_REF" ]]; then
+  _cmux_select_workspace "$WORKSPACE_REF"
+  exit 0
+fi
+
+# ── Pre-session setup ─────────────────────────────────────────────────────
+
+open "obsidian://open?vault=${VAULT_NAME}" 2>/dev/null || true
+
+if [[ -d "$VAULT_DIR/.git" ]]; then
+  echo "Pulling $VAULT_NAME..."
+  git -C "$VAULT_DIR" pull --ff-only --quiet || echo "! git pull failed (continuing)"
+fi
+
+# ── Per-vault hook (runs before workspace creation) ──────────────────────
+# Can override any variable or open additional apps.
+
+if [[ -f "$VAULT_DIR/.think" ]]; then
+  source "$VAULT_DIR/.think"
+fi
+
+# ── Create cmux workspace ─────────────────────────────────────────────────
+
+WORKSPACE_REF=$(cmux new-workspace --name "$SESSION" --cwd "$VAULT_DIR" | awk '{print $2}')
+
+WS_TREE=$(cmux --json tree --workspace "$WORKSPACE_REF")
+SHELL_PANE=$(jq -r '.windows[0].workspaces[0].panes[0].ref' <<< "$WS_TREE")
+SHELL_SURFACE=$(jq -r '.windows[0].workspaces[0].panes[0].selected_surface_ref' <<< "$WS_TREE")
+
+PAI_SURFACE=$(cmux new-split right --workspace "$WORKSPACE_REF" --surface "$SHELL_SURFACE" | awk '{print $2}')
+cmux send --workspace "$WORKSPACE_REF" --surface "$PAI_SURFACE" "pai -l\n"
+
+_cmux_apply_workspace_config "$VAULT_DIR/.cmux-config" "$WORKSPACE_REF"
+cmux focus-pane --pane "$SHELL_PANE" --workspace "$WORKSPACE_REF"
+cmux notify --workspace "$WORKSPACE_REF" --title "$SESSION" --body "Bóveda lista"
