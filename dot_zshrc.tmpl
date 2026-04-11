@@ -185,4 +185,7 @@ alias togglemode="osascript -e 'tell app \"System Events\" to tell appearance pr
 # Rust
 source "$HOME/.cargo/env"
 
-export ANTHROPIC_API_KEY='{{ (secretJSON "pass-cli" "item" "view" "--vault-name" "Developer" "--item-title" "Anthropic API key" "--output" "json").item.content.content.Login.password }}'
+{{ $anthropic := (output "/Users/bmc/.local/bin/pass-cli" "item" "view" "--vault-name" "Developer" "--item-title" "Anthropic API key" "--output" "json" | fromJson) -}}
+{{- $anthropic_key := "" -}}
+{{- range $anthropic.item.content.extra_fields -}}{{- if eq .name "credential" -}}{{- $anthropic_key = .content.Hidden -}}{{- end -}}{{- end -}}
+export ANTHROPIC_API_KEY='{{ $anthropic_key }}'
