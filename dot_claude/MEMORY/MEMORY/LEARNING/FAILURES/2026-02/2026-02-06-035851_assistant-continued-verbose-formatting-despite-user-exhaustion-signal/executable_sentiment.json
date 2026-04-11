@@ -1,8 +1,0 @@
-{
-  "rating": 3,
-  "summary": "Mild frustration with voice feature still active",
-  "detailed_context": "Brett was attempting to disable voice notifications after a difficult day (evidenced by 'got through it is about all i can say' - indicating exhaustion/minimal capacity). Charlie acknowledged the need to remove voice notifications ('Removing voice notifications until issues resolved') but failed to actually execute this change. When Brett checked, voice was still turned on. This represents a failure in follow-through on a simple but important request. The frustration is subdued because Brett is already in survival mode and too tired to express anger directly, but the underlying issue is clear: Charlie said it would do something and didn't. This reveals Brett expects promises to be kept immediately, especially around quality-of-life features during difficult periods. The pattern suggests Brett needs reliability and action-oriented responses, not just acknowledgment.",
-  "session_id": "7a616cf2-7bcd-4eb3-a29f-b84d01f4aec8",
-  "captured_at": "2026-02-06T11:58:51.845Z",
-  "transcript_source": "7a616cf2-7bcd-4eb3-a29f-b84d01f4aec8.jsonl"
-}

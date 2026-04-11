@@ -1,8 +1,0 @@
-{
-  "rating": 3,
-  "summary": "Mild frustration with audio not working",
-  "detailed_context": "Brett attempted to test audio functionality from Charlie's voice server and reported not hearing any sound output. The server showed as operational in all technical checks (port listening, health status, model loaded), yet the actual user experience failed—no audio was produced. This is a classic case of systems appearing healthy while core functionality breaks down. Brett's mild frustration reflects the gap between backend status reports and real-world output. The root cause appears to be either: (1) audio pipeline failure despite server health, (2) speaker/output device configuration issue, or (3) audio generation completing silently. Brett's interrupted second attempt suggests they tried to provide more detail but were cut off. Charlie should have proactively diagnosed the audio chain rather than relying on server health metrics, and should ask clarifying questions about output devices, volume settings, and whether audio is being generated but not played.",
-  "session_id": "9b2c717c-0e15-494e-a655-5df0e70d40b0",
-  "captured_at": "2026-02-06T09:51:01.844Z",
-  "transcript_source": "9b2c717c-0e15-494e-a655-5df0e70d40b0.jsonl"
-}

@@ -1,8 +1,0 @@
-{
-  "rating": 3,
-  "summary": "Mild frustration; got through but barely satisfied",
-  "detailed_context": "Brett was dealing with a technical issue (voice notifications causing problems) and asked Charlie to stop using voice until resolved. Charlie acknowledged and removed the feature. Brett's response 'i got through it is about all i can say' indicates: (1) Brett managed to complete whatever task was at hand, but (2) the experience was difficult or laborious—'got through it' implies struggle rather than smooth operation. The phrase 'is about all i can say' suggests resignation or mild disappointment rather than satisfaction. This reveals Brett expects systems to work smoothly without requiring workarounds. The root cause isn't Charlie's refusal to help, but rather that the previous implementation (voice notifications) created friction that made normal operations harder. Charlie did the right thing by stopping voice, but Brett's tone suggests the damage was already done and the situation left a sour taste. Brett values frictionless experiences and gets mildly frustrated when forced to 'get through' tasks rather than execute them cleanly.",
-  "session_id": "7a616cf2-7bcd-4eb3-a29f-b84d01f4aec8",
-  "captured_at": "2026-02-06T11:56:23.806Z",
-  "transcript_source": "7a616cf2-7bcd-4eb3-a29f-b84d01f4aec8.jsonl"
-}
