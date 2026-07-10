@@ -182,6 +182,9 @@ alias darkmode="osascript -e 'tell app \"System Events\" to tell appearance pref
 alias lightmode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to false'"
 alias togglemode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 
+# Felix financial dashboard — run just recipes from anywhere
+alias felix='just --justfile ~/Code/financial_dashboard/justfile --working-directory ~/Code/financial_dashboard'
+
 # Rust
 source "$HOME/.cargo/env"
 

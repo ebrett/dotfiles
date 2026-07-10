@@ -134,9 +134,13 @@ dotfile_sync() {
 }
 
 # VeraCrypt private vault
-alias vc='mkdir -p /Volumes/Private && veracrypt --text --mount /Volumes/Dalinar/Videos/Private.vc /Volumes/Private'
-alias unvc='veracrypt --text --dismount /Volumes/Private'
+# Single-vault: container always lands in VeraCrypt slot 1. ~/Private (user-owned) avoids
+# the root-owned /Volumes permission trap. --force handles a busy/open vault on unmount.
+alias vc='mkdir -p "$HOME/Private" && veracrypt --text --mount /Volumes/Dalinar/Videos/Private.vc "$HOME/Private"'
+alias unvc='veracrypt --text --unmount --force --slot 1'
 
 # Zoom webinar focus - hide all apps except Zoom
 alias zoom-focus='osascript -e '\''tell application "System Events" to set visible of every process whose visible is true and name is not "Zoom" to false'\'''
 alias zoom-unfocus='osascript -e '\''tell application "System Events" to set visible of every process to true'\'''
+
+alias guide='open -a /Applications/Setapp/Marked.app ~/.claude/PAI/USER/PROJECTS/PROJECTS.md'
